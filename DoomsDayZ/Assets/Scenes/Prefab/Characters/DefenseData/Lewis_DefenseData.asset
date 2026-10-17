@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8889ed9afeb954d45a90cb454967124c, type: 3}
+  m_Name: Lewis_DefenseData
+  m_EditorClassIdentifier: 
+  _STR: 4
+  _AGI: 7
+  _INT: 4
+  _MaximumHealth: 100
+  _CurrentHealth: 0
+  _MaximumStamina: 100
+  _CurrentStamina: 0
+  _AdditionalMovementSpeed: 0

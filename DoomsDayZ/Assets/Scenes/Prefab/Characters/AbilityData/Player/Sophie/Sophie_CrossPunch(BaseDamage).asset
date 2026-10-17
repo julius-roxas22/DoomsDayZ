@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bff7e7ee37fc30b45ab5f27fc283cfa7, type: 3}
+  m_Name: Sophie_CrossPunch(BaseDamage)
+  m_EditorClassIdentifier: 
+  _ProjectileType: 0
+  _StartTime: 0.12
+  _EndTime: 0.45
+  _MustCollide: 1
+  _WeaponMelee: {fileID: 0}
+  _AttackParts:
+  - mixamorig:RightHand
+  _XForce: 0
+  _YForce: 1500
+  _ZForce: 1500
+  enableDebugMode: 0
+  comboStart: 0.2
+  comboEnd: 0.8
