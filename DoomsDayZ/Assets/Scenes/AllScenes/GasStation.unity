@@ -6315,16 +6315,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4033280845930279746, guid: ecc914cc7ced152459515f633432feb6,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e44351b36aaa3a24999a73a4be5d54c1, type: 2}
-    - target: {fileID: 4033280845930279746, guid: ecc914cc7ced152459515f633432feb6,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 52c8cd9a1efab654fb87106eb4e3838e, type: 2}
     - target: {fileID: 4292519174238974944, guid: ecc914cc7ced152459515f633432feb6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6379,11 +6369,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Zombie Romero
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291534041142480270, guid: ecc914cc7ced152459515f633432feb6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
