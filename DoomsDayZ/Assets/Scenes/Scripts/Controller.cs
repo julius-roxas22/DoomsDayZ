@@ -36,9 +36,18 @@ namespace IndieGameCharacterControllerSystem
         public bool _MoveBackwardRight;
         public bool _Jump;
         public bool _Attack;
+
+        [Header("Interaction Keys")]
         public bool _IsGrabbingWeapon;
         public bool _IsDroppingWeapon;
         public bool _IsPressedKeyR;
+        public bool _DisarmWeapon;
+
+        [Header("Hot bar Keys")]
+        public bool _IsPressedKey1;
+        public bool _IsPressedKey2;
+        public bool _IsPressedKey3;
+        public bool _IsPressedKey4;
 
         [Space(17)]
         [Header("Animation Progress")]

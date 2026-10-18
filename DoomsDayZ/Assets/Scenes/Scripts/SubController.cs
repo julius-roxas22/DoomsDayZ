@@ -30,6 +30,11 @@ namespace IndieGameCharacterControllerSystem
             controller._IsGrabbingWeapon = VirtualInputManager.GetInstance._IsGrabbingWeapon;
             controller._IsDroppingWeapon = VirtualInputManager.GetInstance._IsDroppingWeapon;
             controller._IsPressedKeyR = VirtualInputManager.GetInstance._IsPressedKeyR;
+            controller._IsPressedKey1 = VirtualInputManager.GetInstance._IsPressedKey1;
+            controller._IsPressedKey2 = VirtualInputManager.GetInstance._IsPressedKey2;
+            controller._IsPressedKey3 = VirtualInputManager.GetInstance._IsPressedKey3;
+            controller._IsPressedKey4 = VirtualInputManager.GetInstance._IsPressedKey4;
+            controller._DisarmWeapon = VirtualInputManager.GetInstance._DisarmWeapon;
         }
     }
 }

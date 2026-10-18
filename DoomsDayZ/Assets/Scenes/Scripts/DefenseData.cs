@@ -20,5 +20,6 @@ namespace IndieGameCharacterAttributeData
         public float _MaximumStamina = 100f;//pre defined values
         public float _CurrentStamina;
         public float _AdditionalMovementSpeed;
+
     }
 }

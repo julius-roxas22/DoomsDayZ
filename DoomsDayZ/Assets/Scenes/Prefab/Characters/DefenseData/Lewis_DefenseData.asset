@@ -15,8 +15,8 @@ MonoBehaviour:
   _STR: 4
   _AGI: 7
   _INT: 4
-  _MaximumHealth: 100
-  _CurrentHealth: 0
-  _MaximumStamina: 100
-  _CurrentStamina: 0
-  _AdditionalMovementSpeed: 0
+  _MaximumHealth: 120
+  _CurrentHealth: 120
+  _MaximumStamina: 128
+  _CurrentStamina: 128
+  _AdditionalMovementSpeed: 0.04

@@ -70,6 +70,8 @@ namespace IndieGameHealthSystem
         #endregion
         private void Awake()
         {
+            _DefenseData._MaximumHealth = 100f;
+            _DefenseData._MaximumStamina = 100f;
             _DefenseData._MaximumHealth += (_DefenseData._STR * 5f);
             _DefenseData._MaximumStamina += (_DefenseData._AGI * 4f);
             _DefenseData._AdditionalMovementSpeed = (_DefenseData._INT * 0.01f);

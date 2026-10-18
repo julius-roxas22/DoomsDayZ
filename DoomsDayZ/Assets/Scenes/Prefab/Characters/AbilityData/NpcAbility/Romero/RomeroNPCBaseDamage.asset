@@ -19,6 +19,7 @@ MonoBehaviour:
   _WeaponMelee: {fileID: 0}
   _AttackParts:
   - mixamorig5:RightHand
+  - mixamorig:RightHand
   _XForce: -1000
   _YForce: 0
   _ZForce: 1000
