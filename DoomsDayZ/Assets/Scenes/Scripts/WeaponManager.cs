@@ -37,7 +37,10 @@ namespace IndieGameManagersSystem
 
             PlayerVault vault = GameManager.GetInstance._GetPlayerVault();
             vault._Owner = character;
-            vault._Items.Add(weapon);
+            if (!vault._Items.Contains(weapon))
+            {
+                vault._Items.Add(weapon);
+            }
             GameManager.GetInstance._GetItemHotbarContainer()._SetItemHeld();
         }
 

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1f0ffc52dbf51141a6e7a46e33e61e0, type: 3}
-  m_Name: GrabbedWeaponFixedPosition
+  m_Name: General_GrabbedWeaponFixedPosition
   m_EditorClassIdentifier: 
   fixedPositionTiming: 0.5
   bodyPartName: WeaponSlot

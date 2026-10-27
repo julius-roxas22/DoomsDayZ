@@ -93,7 +93,7 @@ namespace IndieGameAnimationStateData
             weapon.transform.localScale = defaultScale;
 
             melee._ResetWeaponData();
-            character._IsEquiped = true;
+            //character._IsEquiped = true;
             character._CharacterRagdoll.setupRagdollParts();
             Destroy(weapon.GetComponent<Rigidbody>());
         }

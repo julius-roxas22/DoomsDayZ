@@ -38,10 +38,10 @@ namespace IndieGameAnimationStateData
             }
             else
             {
-                if (character._IsEquiped) // just to check if we already equiped weapon and if not we can pick up
-                {
-                    return;
-                }
+                //if (character._IsEquiped) // just to check if we already equiped weapon and if not we can pick up
+                //{
+                //    return;
+                //}
 
                 List<Collider> weaponList = character._VicinityDetector._VicinityDetects;
 

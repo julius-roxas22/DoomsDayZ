@@ -24,25 +24,60 @@ namespace IndieGameUISystem
         public void _SetItemHeld()
         {
             List<GameObject> items = GameManager.GetInstance._GetPlayerVault()._Items;
-            heldItems.AddRange(items);
+            //heldItems.AddRange(items);
+            foreach(GameObject o in items)
+            {
+                if (!heldItems.Contains(o))
+                {
+                    heldItems.Add(o);
+                }
+            }
 
-            for (int i = 0; i < _ItemSlotContainerList.Count; i++)
+            ItemSlotContainer slotContainer = _GetItemIsNotHeld();
+
+            if(null != slotContainer)
+            {
+                GameObject obj = heldItems[0];
+                WeaponMeleeData weaponMeleeData = obj.GetComponent<WeaponMelee>()._WeaponMeleeData;
+                slotContainer._WeaponMeleeData = weaponMeleeData;
+                slotContainer._ItemImage.sprite = weaponMeleeData._WeaponSpriteImage;
+                slotContainer._HasHeldItem = true;
+                heldItems.Clear();
+            }
+            else
+            {
+                Debug.Log("No available Item slot");
+            }
+
+            //for (int i = 0; i < _ItemSlotContainerList.Count; i++)
+            //{
+            //    if (!_ItemSlotContainerList[i]._HasHeldItem)
+            //    {
+            //        GameObject obj = heldItems[0];
+            //        WeaponMeleeData weaponMeleeData = obj.GetComponent<WeaponMelee>()._WeaponMeleeData;
+            //        _ItemSlotContainerList[i]._WeaponMeleeData = weaponMeleeData;
+            //        _ItemSlotContainerList[i]._ItemImage.sprite = weaponMeleeData._WeaponSpriteImage;
+            //        _ItemSlotContainerList[i]._HasHeldItem = true;
+            //        heldItems.Clear();
+            //        break;
+            //    }
+            //    else
+            //    {
+            //        Debug.Log("No available Item slot");
+            //    }
+            //}
+        }
+
+        public ItemSlotContainer _GetItemIsNotHeld()
+        {
+            for(int i = 0; i < _ItemSlotContainerList.Count; i++)
             {
                 if (!_ItemSlotContainerList[i]._HasHeldItem)
                 {
-                    GameObject obj = heldItems[0];
-                    WeaponMeleeData weaponMeleeData = obj.GetComponent<WeaponMelee>()._WeaponMeleeData;
-                    _ItemSlotContainerList[i]._WeaponMeleeData = weaponMeleeData;
-                    _ItemSlotContainerList[i]._ItemImage.sprite = weaponMeleeData._WeaponSpriteImage;
-                    _ItemSlotContainerList[i]._HasHeldItem = true;
-                    heldItems.Clear();
-                    break;
-                }
-                else
-                {
-                    Debug.Log("No available Item slot");
+                    return _ItemSlotContainerList[i];
                 }
             }
+            return null;
         }
 
         public void _UpdateItemHeld(WeaponMeleeData weaponMeleeData)
