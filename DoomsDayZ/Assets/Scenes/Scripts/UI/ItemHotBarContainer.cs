@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using IndieGameWeaponSystem;
+using IndieGameInventorySystem;
 using IndieGameManagersSystem;
 using IndieGameCharacterControllerSystem;
 
@@ -10,8 +10,6 @@ namespace IndieGameUISystem
     public class ItemHotBarContainer : MonoBehaviour
     {
         public List<ItemSlotContainer> _ItemSlotContainerList = new List<ItemSlotContainer>();
-        [Header("Temporary items holder")]
-        [SerializeField] private List<GameObject> heldItems = new List<GameObject>();
 
         public void _AddItemSlotContainer(ItemSlotContainer slotContainer)
         {
@@ -21,60 +19,38 @@ namespace IndieGameUISystem
             }
         }
 
-        public void _SetItemHeld()
+        public bool _CheckItemSlotIsFull
         {
-            List<GameObject> items = GameManager.GetInstance._GetPlayerVault()._Items;
-            //heldItems.AddRange(items);
-            foreach(GameObject o in items)
+            get
             {
-                if (!heldItems.Contains(o))
+                for (int i = 0; i < _ItemSlotContainerList.Count; i++)
                 {
-                    heldItems.Add(o);
+                    if (!_ItemSlotContainerList[i]._HasHeldItem)
+                    {
+                        return false;
+                    }
                 }
+                return true;
             }
-
-            ItemSlotContainer slotContainer = _GetItemIsNotHeld();
-
-            if(null != slotContainer)
-            {
-                GameObject obj = heldItems[0];
-                WeaponMeleeData weaponMeleeData = obj.GetComponent<WeaponMelee>()._WeaponMeleeData;
-                slotContainer._WeaponMeleeData = weaponMeleeData;
-                slotContainer._ItemImage.sprite = weaponMeleeData._WeaponSpriteImage;
-                slotContainer._HasHeldItem = true;
-                heldItems.Clear();
-            }
-            else
-            {
-                Debug.Log("No available Item slot");
-            }
-
-            //for (int i = 0; i < _ItemSlotContainerList.Count; i++)
-            //{
-            //    if (!_ItemSlotContainerList[i]._HasHeldItem)
-            //    {
-            //        GameObject obj = heldItems[0];
-            //        WeaponMeleeData weaponMeleeData = obj.GetComponent<WeaponMelee>()._WeaponMeleeData;
-            //        _ItemSlotContainerList[i]._WeaponMeleeData = weaponMeleeData;
-            //        _ItemSlotContainerList[i]._ItemImage.sprite = weaponMeleeData._WeaponSpriteImage;
-            //        _ItemSlotContainerList[i]._HasHeldItem = true;
-            //        heldItems.Clear();
-            //        break;
-            //    }
-            //    else
-            //    {
-            //        Debug.Log("No available Item slot");
-            //    }
-            //}
         }
 
-        public ItemSlotContainer _GetItemIsNotHeld()
+        public void _SetItemHeld(GameObject obj)
         {
-            for(int i = 0; i < _ItemSlotContainerList.Count; i++)
+            ItemSlotContainer container = _GetSlotContainerHasntHeldItem();
+            WeaponMelee melee = obj.GetComponent<WeaponMelee>();
+            WeaponMeleeData weaponMeleeData = melee._WeaponMeleeData;
+            container._ItemImage.sprite = weaponMeleeData._WeaponSpriteImage;
+            container._WeaponMeleeData = weaponMeleeData;
+            container._HasHeldItem = true;
+        }
+
+        private ItemSlotContainer _GetSlotContainerHasntHeldItem()
+        {
+            foreach (ItemSlotContainer c in _ItemSlotContainerList)
             {
-                if (!_ItemSlotContainerList[i]._HasHeldItem)
+                if (!c._HasHeldItem)
                 {
-                    return _ItemSlotContainerList[i];
+                    return c;
                 }
             }
             return null;
@@ -84,7 +60,8 @@ namespace IndieGameUISystem
         {
             for (int i = 0; i < _ItemSlotContainerList.Count; i++)
             {
-                if (weaponMeleeData == _ItemSlotContainerList[i]._WeaponMeleeData && _ItemSlotContainerList[i]._HasHeldItem)
+                ItemSlotContainer container = _ItemSlotContainerList[i];
+                if (weaponMeleeData == container._WeaponMeleeData && container._HasHeldItem)
                 {
                     _ItemSlotContainerList[i]._WeaponMeleeData = null;
                     _ItemSlotContainerList[i]._ItemImage.sprite = null;

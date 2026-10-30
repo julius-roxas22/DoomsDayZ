@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //this is data for every weapon that contains different type of weapons
-namespace IndieGameWeaponSystem
+namespace IndieGameInventorySystem
 {
     [CreateAssetMenu(fileName = "New Data", menuName = "IndieGamePractice/WeaponData/MeleeWeaponData")]
     public class WeaponMeleeData : ScriptableObject

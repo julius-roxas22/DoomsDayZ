@@ -41,7 +41,7 @@ namespace IndieGameManagersSystem
             {
                 vault._Items.Add(weapon);
             }
-            GameManager.GetInstance._GetItemHotbarContainer()._SetItemHeld();
+            GameManager.GetInstance._GetItemHotbarContainer()._SetItemHeld(weapon);
         }
 
         public void _RemoveWeapon(Character c, GameObject weapon)
@@ -57,10 +57,6 @@ namespace IndieGameManagersSystem
             {
                 weaponList.Remove(weapon);
             }
-
-            PlayerVault vault = GameManager.GetInstance._GetPlayerVault();
-            vault._RemoveItems(weapon);
-            GameManager.GetInstance._GetItemHotbarContainer()._UpdateItemHeld(weapon.GetComponent<IndieGameWeaponSystem.WeaponMelee>()._WeaponMeleeData);
         }
 
         public List<GameObject> _GetWeaponList(Character c)

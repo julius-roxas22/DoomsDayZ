@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using IndieGameCharacterControllerSystem;
 using IndieGameAnimationStateData;
-using IndieGameWeaponSystem;
+using IndieGameInventorySystem;
 
 namespace IndieGameAttackSystem
 {

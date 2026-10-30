@@ -5,7 +5,7 @@ using IndieGameCharacterControllerSystem;
 using IndieGameManagersSystem;
 using IndieGameAudioSystem;
 
-namespace IndieGameWeaponSystem
+namespace IndieGameInventorySystem
 {
     public class WeaponHeavy : WeaponBase
     {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace IndieGameCharacterControllerSystem
 {
+    //the following variables are drive by sub controller
 
     public enum _ETransitionParameters
     {

@@ -6,7 +6,7 @@ using TMPro;
 using IndieGameCharacterControllerSystem;
 using IndieGameGameControllerSystem;
 using IndieGameManagersSystem;
-using IndieGameWeaponSystem;
+using IndieGameInventorySystem;
 
 namespace IndieGameUISystem
 {

@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using IndieGameManagersSystem;
 using IndieGameCharacterControllerSystem;
-using IndieGameWeaponSystem;
+using IndieGameInventorySystem;
 
 namespace IndieGameUISystem
 {

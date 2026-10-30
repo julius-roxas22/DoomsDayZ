@@ -159,7 +159,7 @@ namespace IndieGameAnimationStateData
             {
                 Debug.DrawRay(/*character.transform.position*/character._BoxCollider.bounds.center, character.transform.forward * blockingDistance, Color.green);
 
-                if (!isBodyParts(hit.collider) && !IndieGameWeaponSystem.WeaponBase._IsWeaponProjectile(hit.collider))//just to check if it is weapon
+                if (!isBodyParts(hit.collider) && !IndieGameInventorySystem.WeaponBase._IsWeaponProjectile(hit.collider))//just to check if it is weapon
                 {
                     return true;
                 }

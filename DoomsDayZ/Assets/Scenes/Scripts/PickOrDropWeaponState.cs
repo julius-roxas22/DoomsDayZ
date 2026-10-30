@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using IndieGameCharacterControllerSystem;
 using IndieGameManagersSystem;
+using IndieGameUISystem;
 
 namespace IndieGameAnimationStateData
 {
@@ -42,16 +43,16 @@ namespace IndieGameAnimationStateData
                 //{
                 //    return;
                 //}
-
                 List<Collider> weaponList = character._VicinityDetector._VicinityDetects;
 
                 if (weaponList.Count == 0)//check if there is weapon on the ground; same location of the character
                 {
                     return;
                 }
-
+                
                 if (character._Controller._IsGrabbingWeapon)
                 {
+                    //
                     animator.SetBool(_ETransitionParameters.IsGrabbingWeapon.ToString(), true);
                 }
             }

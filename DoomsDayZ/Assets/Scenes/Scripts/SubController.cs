@@ -5,7 +5,8 @@ using IndieGameManagersSystem;
 
 namespace IndieGameCharacterControllerSystem
 {
-    //this is like a bridge of the controller
+    //associated with controller
+    //this is the motor of the character to move
     public class SubController : MonoBehaviour
     {
         private Controller controller;

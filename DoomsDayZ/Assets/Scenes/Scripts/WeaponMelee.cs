@@ -5,7 +5,7 @@ using IndieGameCharacterControllerSystem;
 using IndieGameAudioSystem;
 using IndieGameManagersSystem;
 
-namespace IndieGameWeaponSystem
+namespace IndieGameInventorySystem
 {
     public class WeaponMelee : WeaponBase
     {

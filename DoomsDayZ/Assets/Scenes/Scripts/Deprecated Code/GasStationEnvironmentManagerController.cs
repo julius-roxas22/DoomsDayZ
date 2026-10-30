@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using IndieGameManagersSystem;
-using IndieGameWeaponSystem;
+using IndieGameInventorySystem;
 
 namespace IndieGameGameControllerSystem
 {

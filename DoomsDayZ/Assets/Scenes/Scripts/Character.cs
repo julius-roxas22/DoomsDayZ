@@ -7,7 +7,7 @@ using IndieGameAnimationStateData;
 using IndieGameManagersSystem;
 using IndieGameNpcSystem;
 using IndieGameHealthSystem;
-using IndieGameWeaponSystem;
+using IndieGameInventorySystem;
 using IndieGameAttackSystem;
 
 //add another weapon with blade

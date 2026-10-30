@@ -4,7 +4,7 @@ using UnityEngine;
 using IndieGameCharacterControllerSystem;
 using IndieGameAttackSystem;
 using IndieGameManagersSystem;
-using IndieGameWeaponSystem;
+using IndieGameInventorySystem;
 using IndieGameHealthSystem;
 
 namespace IndieGameAnimationStateData

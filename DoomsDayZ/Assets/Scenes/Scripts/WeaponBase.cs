@@ -6,7 +6,7 @@ using IndieGameUISystem;
 
 //by using base script; it is shared with player and npc
 //this is for weapon interaction, such as throwing
-namespace IndieGameWeaponSystem
+namespace IndieGameInventorySystem
 {
     //im just added some default values for the reusable variable
     public abstract class WeaponBase : MonoBehaviour
