@@ -49,11 +49,17 @@ namespace IndieGameAnimationStateData
                 {
                     return;
                 }
-                
+
                 if (character._Controller._IsGrabbingWeapon)
                 {
-                    //
-                    animator.SetBool(_ETransitionParameters.IsGrabbingWeapon.ToString(), true);
+                    if (!GameManager.GetInstance._GetItemHotbarContainer()._CheckItemSlotIsFull)
+                    {
+                        animator.SetBool(_ETransitionParameters.IsGrabbingWeapon.ToString(), true);
+                    }
+                    else
+                    {
+                        Debug.Log("Item slot is full");
+                    }
                 }
             }
         }

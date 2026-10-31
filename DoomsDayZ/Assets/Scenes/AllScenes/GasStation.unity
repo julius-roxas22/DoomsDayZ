@@ -323,7 +323,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7220caba5fb9c0b449663cf43bc03a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ItemSlotContainerList: []
+  _ItemSlotContainerList:
+  - {fileID: 1777066819}
+  - {fileID: 1341231526}
+  - {fileID: 973824123}
+  - {fileID: 191344190}
 --- !u!1001 &77936506
 PrefabInstance:
   m_ObjectHideFlags: 0

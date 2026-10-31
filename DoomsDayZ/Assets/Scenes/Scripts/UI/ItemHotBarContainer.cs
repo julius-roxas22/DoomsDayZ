@@ -11,14 +11,6 @@ namespace IndieGameUISystem
     {
         public List<ItemSlotContainer> _ItemSlotContainerList = new List<ItemSlotContainer>();
 
-        public void _AddItemSlotContainer(ItemSlotContainer slotContainer)
-        {
-            if (!_ItemSlotContainerList.Contains(slotContainer))
-            {
-                _ItemSlotContainerList.Add(slotContainer);
-            }
-        }
-
         public bool _CheckItemSlotIsFull
         {
             get
@@ -36,7 +28,7 @@ namespace IndieGameUISystem
 
         public void _SetItemHeld(GameObject obj)
         {
-            ItemSlotContainer container = _GetSlotContainerHasntHeldItem();
+            ItemSlotContainer container = getSlotContainerHasntHeldItem;
             WeaponMelee melee = obj.GetComponent<WeaponMelee>();
             WeaponMeleeData weaponMeleeData = melee._WeaponMeleeData;
             container._ItemImage.sprite = weaponMeleeData._WeaponSpriteImage;
@@ -44,16 +36,34 @@ namespace IndieGameUISystem
             container._HasHeldItem = true;
         }
 
-        private ItemSlotContainer _GetSlotContainerHasntHeldItem()
+        private ItemSlotContainer getSlotContainerHasntHeldItem // get the slot container is not already held item
         {
-            foreach (ItemSlotContainer c in _ItemSlotContainerList)
+            get
             {
-                if (!c._HasHeldItem)
+                foreach (ItemSlotContainer c in _ItemSlotContainerList)
                 {
-                    return c;
+                    if (!c._HasHeldItem)
+                    {
+                        return c;
+                    }
                 }
+                return null;
             }
-            return null;
+        }
+
+        public ItemSlotContainer _GetItemActive // get the slot container active equiped
+        {
+            get
+            {
+                foreach (ItemSlotContainer c in _ItemSlotContainerList)
+                {
+                    if (c._ItemSetActive)
+                    {
+                        return c;
+                    }
+                }
+                return null;
+            }
         }
 
         public void _UpdateItemHeld(WeaponMeleeData weaponMeleeData)

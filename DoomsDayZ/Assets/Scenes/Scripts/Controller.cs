@@ -42,7 +42,7 @@ namespace IndieGameCharacterControllerSystem
         public bool _IsGrabbingWeapon;
         public bool _IsDroppingWeapon;
         public bool _IsPressedKeyR;
-        public bool _DisarmWeapon;
+        public bool _IsPressKeyX;
 
         [Header("Hot bar Keys")]
         public bool _IsPressedKey1;
