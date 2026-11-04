@@ -11,12 +11,13 @@ namespace IndieGameAnimationStateData
     public class SetActiveHotBarItem : BaseStateData
     {
         private Dictionary<ItemSlotContainer, bool> dictionaryActiveItem = new Dictionary<ItemSlotContainer, bool>();
-        private bool isAnimateTranstion;
+        [SerializeField] private bool isAnimateTranstion;
         private ItemHotBarContainer hotBar;
 
         public override void OnEnterAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
-            if(null == hotBar)
+            isAnimateTranstion = false;
+            if (null == hotBar)
             {
                 hotBar = GameManager.GetInstance._GetItemHotbarContainer();
             }
@@ -47,6 +48,11 @@ namespace IndieGameAnimationStateData
 
             if (hotBar._SlotIndex != -1)
             {
+                if (!GameManager.GetInstance._GetItemHotbarContainer()._CheckItemHeld())//check the specific item slot if held or not
+                {
+                    return;
+                }
+
                 if (!isAnimateTranstion)
                 {
                     isAnimateTranstion = true;
@@ -55,18 +61,22 @@ namespace IndieGameAnimationStateData
             }
             else
             {
-                if (isAnimateTranstion)
-                {
-                    isAnimateTranstion = false;
-                    animator.SetBool(_ETransitionParameters.IsEquiped.ToString(), isAnimateTranstion);
-                }
+                //if (!character._IsEquiped)
+                //{
+                //    return;
+                //}
 
+                //if (isAnimateTranstion)
+                //{
+                //    isAnimateTranstion = false;
+                //    animator.SetBool(_ETransitionParameters.IsEquiped.ToString(), isAnimateTranstion);
+                //}
             }
         }
 
         public override void OnExitAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
-
+            hotBar._SlotIndex = -2;
         }
 
         private ItemSlotContainer getItemSlotContainer(int gameObjectIndex, Animator animator)

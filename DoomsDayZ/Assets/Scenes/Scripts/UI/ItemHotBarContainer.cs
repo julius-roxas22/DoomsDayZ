@@ -37,6 +37,17 @@ namespace IndieGameUISystem
             }
         }
 
+        public bool _CheckItemHeld()
+        {
+            ItemSlotContainer container = _ItemSlotContainerList[_SlotIndex];
+            _ActivatedItemSlotContainer = container;
+            if (container._HasHeldItem)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public void _SetItemHeld(GameObject obj)
         {
             ItemSlotContainer container = getSlotContainerHasntHeldItem;

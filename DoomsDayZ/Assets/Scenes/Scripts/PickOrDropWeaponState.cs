@@ -27,11 +27,11 @@ namespace IndieGameAnimationStateData
             {
                 //if we already have weapon equiped
                 //we can drop it on the same location of the character
-                if (!character._IsEquiped) // if there is no weapon equiped or no weapon yet we cant drop something
-                {
-                    return;
-                }
-
+                // if there is no weapon equiped or no weapon yet we cant drop something
+                //if (!character._IsEquiped)
+                //{
+                //    return;
+                //}
                 if (character._Controller._IsDroppingWeapon)
                 {
                     animator.SetBool(_ETransitionParameters.IsDroppingWeapon.ToString(), true);
@@ -39,13 +39,10 @@ namespace IndieGameAnimationStateData
             }
             else
             {
-                //if (character._IsEquiped) // just to check if we already equiped weapon and if not we can pick up
-                //{
-                //    return;
-                //}
+                //check if there is weapon on the ground; same location of the character
                 List<Collider> weaponList = character._VicinityDetector._VicinityDetects;
 
-                if (weaponList.Count == 0)//check if there is weapon on the ground; same location of the character
+                if (weaponList.Count == 0)
                 {
                     return;
                 }

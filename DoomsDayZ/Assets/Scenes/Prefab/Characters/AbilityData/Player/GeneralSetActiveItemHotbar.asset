@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9798dddcca09224dae1182d9e6f482d, type: 3}
   m_Name: GeneralSetActiveItemHotbar
   m_EditorClassIdentifier: 
+  isAnimateTranstion: 1
