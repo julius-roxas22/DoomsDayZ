@@ -371,6 +371,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1204834189393481000, guid: ecc914cc7ced152459515f633432feb6,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 668a49787506b0a4baee309dc641ddbc, type: 2}
     - target: {fileID: 2063608139889288969, guid: ecc914cc7ced152459515f633432feb6,
         type: 3}
       propertyPath: m_Controller
@@ -2689,6 +2694,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1204834189393481000, guid: ecc914cc7ced152459515f633432feb6,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 26a77a81c7c7b054fa1c8e20d36300a7, type: 2}
     - target: {fileID: 2063608139889288969, guid: ecc914cc7ced152459515f633432feb6,
         type: 3}
       propertyPath: m_Controller
@@ -2782,6 +2792,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1204834189393481000, guid: ecc914cc7ced152459515f633432feb6,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 60d6d072569084a41bb87b1344e7187c, type: 2}
     - target: {fileID: 2063608139889288969, guid: ecc914cc7ced152459515f633432feb6,
         type: 3}
       propertyPath: m_Controller
@@ -6804,6 +6819,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1204834189393481000, guid: ecc914cc7ced152459515f633432feb6,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 615f4bc2766622a4d9900a8fb2399fe2, type: 2}
     - target: {fileID: 2063608139889288969, guid: ecc914cc7ced152459515f633432feb6,
         type: 3}
       propertyPath: m_Controller
@@ -8211,6 +8231,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1204834189393481000, guid: ecc914cc7ced152459515f633432feb6,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d9d63adfd184865428d0bbbdf431dfe4, type: 2}
     - target: {fileID: 2063608139889288969, guid: ecc914cc7ced152459515f633432feb6,
         type: 3}
       propertyPath: m_Controller

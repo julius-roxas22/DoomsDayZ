@@ -7,9 +7,20 @@ using IndieGameCharacterControllerSystem;
 
 namespace IndieGameUISystem
 {
+    //public enum _EActivatedSlotItemKey
+    //{
+    //    None,
+    //    InputKey1,
+    //    InputKey2,
+    //    InputKey3,
+    //    InputKey4,
+    //}
+
     public class ItemHotBarContainer : MonoBehaviour
     {
         public List<ItemSlotContainer> _ItemSlotContainerList = new List<ItemSlotContainer>();
+        public ItemSlotContainer _ActivatedItemSlotContainer;
+        public int _SlotIndex = -1;
 
         public bool _CheckItemSlotIsFull
         {

@@ -58,6 +58,7 @@ namespace IndieGameAnimationStateData
                     }
                     else
                     {
+                        //add some text ui in to the game
                         Debug.Log("Item slot is full");
                     }
                 }

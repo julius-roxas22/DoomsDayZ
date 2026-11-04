@@ -7,58 +7,60 @@ using IndieGameUISystem;
 
 namespace IndieGameAnimationStateData
 {
-    //this script is a state to grab the weapon with timing
     [CreateAssetMenu(fileName = "New Ability", menuName = "IndieGamePractice/Ability/SetActiveHotBarItem")]
     public class SetActiveHotBarItem : BaseStateData
     {
-        private Dictionary<ItemSlotContainer, bool> dictionaryActiveWeapon = new Dictionary<ItemSlotContainer, bool>();
-        private bool setAnimator;
+        private Dictionary<ItemSlotContainer, bool> dictionaryActiveItem = new Dictionary<ItemSlotContainer, bool>();
+        private bool isAnimateTranstion;
+        private ItemHotBarContainer hotBar;
 
         public override void OnEnterAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
-            setDefaultDictionary();
+            if(null == hotBar)
+            {
+                hotBar = GameManager.GetInstance._GetItemHotbarContainer();
+            }
         }
 
         public override void OnUpdateAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
-            List<ItemSlotContainer> slots = GameManager.GetInstance._GetItemHotbarContainer()._ItemSlotContainerList;
-
-            ItemSlotContainer container1 = slots[0];
-            ItemSlotContainer container2 = slots[1];
-            ItemSlotContainer container3 = slots[2];
-            ItemSlotContainer container4 = slots[3];
-
-            if (container1._HasHeldItem)
+            if (character._Controller._IsPressedKey1)
             {
-                if (character._Controller._IsPressedKey1)
-                {
-                    setValueDictionary(container1, animator);
-                }
+                hotBar._SlotIndex = 0;
             }
-            else if (container2._HasHeldItem)
+            else if (character._Controller._IsPressedKey2)
             {
-                if (character._Controller._IsPressedKey2)
-                {
-                    setValueDictionary(container2, animator);
-                }
+                hotBar._SlotIndex = 1;
             }
-            else if (container3._HasHeldItem)
+            else if (character._Controller._IsPressedKey3)
             {
-                if (character._Controller._IsPressedKey3)
-                {
-                    setValueDictionary(container3, animator);
-                }
+                hotBar._SlotIndex = 2;
             }
-            else if (container4._HasHeldItem)
+            else if (character._Controller._IsPressedKey4)
             {
-                if (character._Controller._IsPressedKey4)
-                {
-                    setValueDictionary(container4, animator);
-                }
+                hotBar._SlotIndex = 3;
             }
             else if (character._Controller._IsPressKeyX)
             {
-                setDefaultDictionary();
+                hotBar._SlotIndex = -1;
+            }
+
+            if (hotBar._SlotIndex != -1)
+            {
+                if (!isAnimateTranstion)
+                {
+                    isAnimateTranstion = true;
+                    animator.SetBool(_ETransitionParameters.IsEquiped.ToString(), isAnimateTranstion);
+                }
+            }
+            else
+            {
+                if (isAnimateTranstion)
+                {
+                    isAnimateTranstion = false;
+                    animator.SetBool(_ETransitionParameters.IsEquiped.ToString(), isAnimateTranstion);
+                }
+
             }
         }
 
@@ -67,43 +69,21 @@ namespace IndieGameAnimationStateData
 
         }
 
-        private void setDefaultDictionary()
+        private ItemSlotContainer getItemSlotContainer(int gameObjectIndex, Animator animator)
         {
-            foreach (ItemSlotContainer slot in GameManager.GetInstance._GetItemHotbarContainer()._ItemSlotContainerList)
+            List<ItemSlotContainer> slots = GameManager.GetInstance._GetItemHotbarContainer()._ItemSlotContainerList;
+            ItemSlotContainer container = slots[gameObjectIndex];
+            if (container._HasHeldItem && null != container._WeaponMeleeData)
             {
-                slot._ItemSetActive = false;
-                dictionaryActiveWeapon[slot] = false;
+                return container;
             }
 
-            if (setAnimator)
+            if (!isAnimateTranstion)
             {
-                //animator transition here
-                setAnimator = false;
+                animator.SetBool(_ETransitionParameters.IsEquiped.ToString(), true);
+                isAnimateTranstion = true;
             }
-        }
-
-        private void setValueDictionary(ItemSlotContainer slot, Animator animator)
-        {
-            foreach (KeyValuePair<ItemSlotContainer, bool> kvp in dictionaryActiveWeapon)
-            {
-                if (kvp.Key == slot)
-                {
-                    dictionaryActiveWeapon[kvp.Key] = true;
-                    slot._ItemSetActive = true;
-                }
-                else
-                {
-                    dictionaryActiveWeapon[kvp.Key] = false;
-                    slot._ItemSetActive = false;
-                }
-            }
-
-
-            if (!setAnimator)
-            {
-                //animation transition here
-                setAnimator = true;
-            }
+            return null;
         }
     }
 }

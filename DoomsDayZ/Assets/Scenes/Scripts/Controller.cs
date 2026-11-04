@@ -22,6 +22,7 @@ namespace IndieGameCharacterControllerSystem
         Throw,
         Argonizing,
         Sprint,
+        IsEquiped,
     }
 
     public class Controller : MonoBehaviour
