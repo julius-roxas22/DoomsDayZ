@@ -46,7 +46,7 @@ namespace IndieGameAnimationStateData
                 hotBar._SlotIndex = -1;
             }
 
-            if (hotBar._SlotIndex != -1)
+            if (hotBar._SlotIndex >= 0 && hotBar._SlotIndex <= 3)
             {
                 if (!GameManager.GetInstance._GetItemHotbarContainer()._CheckItemHeld())//check the specific item slot if held or not
                 {
@@ -77,23 +77,6 @@ namespace IndieGameAnimationStateData
         public override void OnExitAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
             hotBar._SlotIndex = -2;
-        }
-
-        private ItemSlotContainer getItemSlotContainer(int gameObjectIndex, Animator animator)
-        {
-            List<ItemSlotContainer> slots = GameManager.GetInstance._GetItemHotbarContainer()._ItemSlotContainerList;
-            ItemSlotContainer container = slots[gameObjectIndex];
-            if (container._HasHeldItem && null != container._WeaponMeleeData)
-            {
-                return container;
-            }
-
-            if (!isAnimateTranstion)
-            {
-                animator.SetBool(_ETransitionParameters.IsEquiped.ToString(), true);
-                isAnimateTranstion = true;
-            }
-            return null;
         }
     }
 }

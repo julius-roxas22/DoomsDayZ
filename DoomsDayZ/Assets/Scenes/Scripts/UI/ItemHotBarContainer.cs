@@ -37,7 +37,7 @@ namespace IndieGameUISystem
             }
         }
 
-        public bool _CheckItemHeld()
+        public bool _CheckItemHeld()//check the slot container if does have item held
         {
             ItemSlotContainer container = _ItemSlotContainerList[_SlotIndex];
             _ActivatedItemSlotContainer = container;
@@ -88,18 +88,18 @@ namespace IndieGameUISystem
             }
         }
 
-        public void _UpdateItemHeld(WeaponMeleeData weaponMeleeData)
-        {
-            for (int i = 0; i < _ItemSlotContainerList.Count; i++)
-            {
-                ItemSlotContainer container = _ItemSlotContainerList[i];
-                if (weaponMeleeData == container._WeaponMeleeData && container._HasHeldItem)
-                {
-                    _ItemSlotContainerList[i]._WeaponMeleeData = null;
-                    _ItemSlotContainerList[i]._ItemImage.sprite = null;
-                    _ItemSlotContainerList[i]._HasHeldItem = false;
-                }
-            }
-        }
+        //public void _UpdateItemHeld(WeaponMeleeData weaponMeleeData)
+        //{
+        //    for (int i = 0; i < _ItemSlotContainerList.Count; i++)
+        //    {
+        //        ItemSlotContainer container = _ItemSlotContainerList[i];
+        //        if (weaponMeleeData == container._WeaponMeleeData && container._HasHeldItem)
+        //        {
+        //            _ItemSlotContainerList[i]._WeaponMeleeData = null;
+        //            _ItemSlotContainerList[i]._ItemImage.sprite = null;
+        //            _ItemSlotContainerList[i]._HasHeldItem = false;
+        //        }
+        //    }
+        //}
     }
 }

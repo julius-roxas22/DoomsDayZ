@@ -14,9 +14,7 @@ namespace IndieGameUISystem
         public Image _ItemImage;
         public WeaponMeleeData _WeaponMeleeData;
 
-        private void Awake()
-        {
-            _ItemImage = transform.GetChild(0).GetComponent<Image>();
-        }
+        private void Awake() => _ItemImage = transform.GetChild(0).GetComponent<Image>();
+
     }
 }
