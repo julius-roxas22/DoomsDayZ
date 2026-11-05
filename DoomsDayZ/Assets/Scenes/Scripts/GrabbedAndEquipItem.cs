@@ -9,8 +9,8 @@ using IndieGameUISystem;
 namespace IndieGameAnimationStateData
 {
     //this script is a state to grab the weapon on fixed position on the hand of character
-    [CreateAssetMenu(fileName = "New Ability", menuName = "IndieGamePractice/Ability/GrabbedItem")]
-    public class GrabbedItem : BaseStateData
+    [CreateAssetMenu(fileName = "New Ability", menuName = "IndieGamePractice/Ability/GrabbedAndEquipItem")]
+    public class GrabbedAndEquipItem : BaseStateData
     {
         [Header("Weapon Set up Details")]
         [SerializeField] private float fixedPositionTiming;
@@ -79,10 +79,23 @@ namespace IndieGameAnimationStateData
             PlayerVault playerVault = GameManager.GetInstance._GetPlayerVault();
             ItemHotBarContainer hotBar = GameManager.GetInstance._GetItemHotbarContainer();
 
-            GameObject obj = playerVault._GetItemByData(hotBar._ActivatedItemSlotContainer._WeaponMeleeData);
-            //TODO: something to do here
-            //change the parent into weapon slot in the character
-            //set visible and enable the rigidbody and other component
+            GameObject weaponObject = playerVault._GetItemByData(hotBar._ActivatedItemSlotContainer._WeaponMeleeData);
+            Transform parentTransform = character._BodyPartTransform(bodyPartName);
+            WeaponMelee weaponMelee = weaponObject.GetComponent<WeaponMelee>();
+            parentTransform.localPosition = weaponMelee._WeaponMeleeData._Position;
+            parentTransform.localRotation = Quaternion.Euler(weaponMelee._WeaponMeleeData._Rotations);
+            weaponObject.transform.parent = parentTransform;
+            weaponObject.transform.localPosition = Vector3.zero;
+            weaponObject.transform.localRotation = Quaternion.identity;
+            weaponObject.SetActive(true);
+            weaponObject.GetComponent<BoxCollider>().enabled = true;
+            //Rigidbody rb = weaponObject.GetComponent<Rigidbody>();
+            //rb.useGravity = true;
+            //rb.isKinematic = false;
+
+            character._IsEquiped = true;
+            character._CharacterRagdoll.setupRagdollParts();
+            Destroy(weaponObject.GetComponent<Rigidbody>());
 
 
             //GameObject weapon = WeaponManager.GetInstance._GetWeaponList(character)[0];//get the first weapon in the list

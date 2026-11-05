@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _NewRunAnimControllers:
   - {fileID: 9100000, guid: 1d21e11559df98f478c1bf74a694dd0c, type: 2}
-  - {fileID: 9100000, guid: 6c80b5086d8d379459f3b99ae369751c, type: 2}
-  switchTiming: 0.8
+  switchTiming: 0.95

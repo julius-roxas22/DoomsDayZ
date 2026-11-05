@@ -10,7 +10,6 @@ namespace IndieGameAnimationStateData
     [CreateAssetMenu(fileName = "New Ability", menuName = "IndieGamePractice/Ability/SetActiveHotBarItem")]
     public class SetActiveHotBarItem : BaseStateData
     {
-        private Dictionary<ItemSlotContainer, bool> dictionaryActiveItem = new Dictionary<ItemSlotContainer, bool>();
         [SerializeField] private bool isAnimateTranstion;
         private ItemHotBarContainer hotBar;
 
@@ -53,7 +52,7 @@ namespace IndieGameAnimationStateData
                     return;
                 }
 
-                if (!isAnimateTranstion)
+                if (!isAnimateTranstion)//i want transition only once at very first time to equip weapon
                 {
                     isAnimateTranstion = true;
                     animator.SetBool(_ETransitionParameters.IsEquiped.ToString(), isAnimateTranstion);
@@ -61,16 +60,16 @@ namespace IndieGameAnimationStateData
             }
             else
             {
-                //if (!character._IsEquiped)
-                //{
-                //    return;
-                //}
+                if (!character._IsEquiped)
+                {
+                    return;
+                }
 
-                //if (isAnimateTranstion)
-                //{
-                //    isAnimateTranstion = false;
-                //    animator.SetBool(_ETransitionParameters.IsEquiped.ToString(), isAnimateTranstion);
-                //}
+                if (isAnimateTranstion)
+                {
+                    isAnimateTranstion = false;
+                    animator.SetBool(_ETransitionParameters.IsEquiped.ToString(), isAnimateTranstion);
+                }
             }
         }
 
