@@ -10,7 +10,7 @@ namespace IndieGameAnimationStateData
     [CreateAssetMenu(fileName = "New Ability", menuName = "IndieGamePractice/Ability/SetActiveHotBarItem")]
     public class SetActiveHotBarItem : BaseStateData
     {
-        [SerializeField] private bool isAnimateTranstion;
+        [SerializeField] private bool isAnimateTranstion = false;
         private ItemHotBarContainer hotBar;
 
         public override void OnEnterAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
@@ -20,6 +20,7 @@ namespace IndieGameAnimationStateData
             {
                 hotBar = GameManager.GetInstance._GetItemHotbarContainer();
             }
+
         }
 
         public override void OnUpdateAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
@@ -52,29 +53,30 @@ namespace IndieGameAnimationStateData
                     return;
                 }
 
-                if (!isAnimateTranstion)//i want transition only once at very first time to equip weapon
+                if (!isAnimateTranstion)
                 {
                     isAnimateTranstion = true;
-                    animator.SetBool(_ETransitionParameters.IsEquiped.ToString(), isAnimateTranstion);
+                    animator.SetBool(_ETransitionParameters.Equip.ToString(), isAnimateTranstion);//automatically turn off when switch animator
                 }
             }
-            else
+            else if (hotBar._SlotIndex == -1)
             {
                 if (!character._IsEquiped)
                 {
                     return;
                 }
 
-                if (isAnimateTranstion)
+                if (!isAnimateTranstion)
                 {
-                    isAnimateTranstion = false;
-                    animator.SetBool(_ETransitionParameters.IsEquiped.ToString(), isAnimateTranstion);
+                    isAnimateTranstion = true;
+                    animator.SetBool(_ETransitionParameters.UnEquip.ToString(), isAnimateTranstion);//automatically turn off when switch animator
                 }
             }
         }
 
         public override void OnExitAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
+            isAnimateTranstion = false;
             hotBar._SlotIndex = -2;
         }
     }

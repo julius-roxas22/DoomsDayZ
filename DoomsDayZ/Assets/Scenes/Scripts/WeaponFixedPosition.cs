@@ -9,8 +9,8 @@ using IndieGameUISystem;
 namespace IndieGameAnimationStateData
 {
     //this script is a state to grab the weapon on fixed position on the hand of character
-    [CreateAssetMenu(fileName = "New Ability", menuName = "IndieGamePractice/Ability/GrabbedAndEquipItem")]
-    public class GrabbedAndEquipItem : BaseStateData
+    [CreateAssetMenu(fileName = "New Ability", menuName = "IndieGamePractice/Ability/WeaponFixedPosition")]
+    public class WeaponFixedPosition : BaseStateData
     {
         [Header("Weapon Set up Details")]
         [SerializeField] private float fixedPositionTiming;
@@ -18,9 +18,11 @@ namespace IndieGameAnimationStateData
         [SerializeField] private float xScale;
         [SerializeField] private float yScale;
         [SerializeField] private float zScale;
+        private bool isAnimated;
 
         public override void OnEnterAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
+            isAnimated = false;
             //add it into the weapon manager to handle it specific character with weapon list
             if (!character._SubController.enabled)
             {
@@ -40,7 +42,7 @@ namespace IndieGameAnimationStateData
 
         public override void OnUpdateAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
-            if (stateInfo.normalizedTime >= fixedPositionTiming)
+            if (stateInfo.normalizedTime >= fixedPositionTiming && !isAnimated)
             {
                 if (!character._SubController.enabled)
                 {
@@ -50,12 +52,13 @@ namespace IndieGameAnimationStateData
                 {
                     setWeaponPosition(character);//for player
                 }
+                isAnimated = true;
             }
         }
 
         public override void OnExitAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
-
+            isAnimated = false;
         }
 
         //npc
