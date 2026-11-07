@@ -18,9 +18,22 @@ namespace IndieGameUISystem
 
     public class ItemHotBarContainer : MonoBehaviour
     {
+        public Dictionary<ItemSlotContainer, bool> _SetActiveSlotContainers = new Dictionary<ItemSlotContainer, bool>();
         public List<ItemSlotContainer> _ItemSlotContainerList = new List<ItemSlotContainer>();
         public ItemSlotContainer _ActivatedItemSlotContainer;
         public int _SlotIndex = -1;
+
+        private void Awake()
+        {
+            //set up the dictionary slot container
+            for (int i = 0; i < _ItemSlotContainerList.Count; i++)
+            {
+                if (!_SetActiveSlotContainers.ContainsKey(_ItemSlotContainerList[i]))
+                {
+                    _SetActiveSlotContainers[_ItemSlotContainerList[i]] = false;
+                }
+            }
+        }
 
         public bool _CheckItemSlotIsFull
         {

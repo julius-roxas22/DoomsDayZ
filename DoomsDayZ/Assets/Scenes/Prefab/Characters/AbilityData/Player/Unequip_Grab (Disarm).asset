@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57efe715e06de764dbb60ac00718bcd9, type: 3}
   m_Name: Unequip_Grab (Disarm)
   m_EditorClassIdentifier: 
-  animationTiming: 0.75
+  animationTiming: 0.8
   disarmWeapon: 1
   grabItem: 0
   bodyPartName: WeaponSlot

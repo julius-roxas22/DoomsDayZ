@@ -20,7 +20,6 @@ namespace IndieGameAnimationStateData
             {
                 hotBar = GameManager.GetInstance._GetItemHotbarContainer();
             }
-
         }
 
         public override void OnUpdateAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
@@ -48,16 +47,25 @@ namespace IndieGameAnimationStateData
 
             if (hotBar._SlotIndex >= 0 && hotBar._SlotIndex <= 3)
             {
-                if (!GameManager.GetInstance._GetItemHotbarContainer()._CheckItemHeld())//check the specific item slot if held or not
+
+                if (!hotBar._CheckItemHeld())//check the specific item slot if held or not
                 {
                     return;
                 }
 
-                if (!isAnimateTranstion)
+                if (hotBar._SetActiveSlotContainers[hotBar._ActivatedItemSlotContainer])
                 {
-                    isAnimateTranstion = true;
-                    animator.SetBool(_ETransitionParameters.Equip.ToString(), isAnimateTranstion);//automatically turn off when switch animator
+                    return;
                 }
+
+                if (isAnimateTranstion)
+                {
+                    return;
+                }
+
+                isAnimateTranstion = true;
+                hotBar._SetActiveSlotContainers[hotBar._ActivatedItemSlotContainer] = true;
+                animator.SetBool(_ETransitionParameters.Equip.ToString(), isAnimateTranstion);//automatically turn off when switch animator
             }
             else if (hotBar._SlotIndex == -1)
             {
@@ -66,11 +74,14 @@ namespace IndieGameAnimationStateData
                     return;
                 }
 
-                if (!isAnimateTranstion)
+                if (isAnimateTranstion)
                 {
-                    isAnimateTranstion = true;
-                    animator.SetBool(_ETransitionParameters.UnEquip.ToString(), isAnimateTranstion);//automatically turn off when switch animator
+                    return;
                 }
+
+                isAnimateTranstion = true;
+                hotBar._SetActiveSlotContainers[hotBar._ActivatedItemSlotContainer] = false;
+                animator.SetBool(_ETransitionParameters.UnEquip.ToString(), isAnimateTranstion);//automatically turn off when switch animator
             }
         }
 

@@ -77,6 +77,7 @@ namespace IndieGameAnimationStateData
             Transform bodyPartTransform = character._BodyPartTransform(bodyPartName); // get the parent transform
             GameObject obj1 = bodyPartTransform.GetChild(0).gameObject; //get the weapon from parent
             setPosition(obj1);
+            character._IsEquiped = false;
         }
 
         private void setPosition(GameObject obj)
