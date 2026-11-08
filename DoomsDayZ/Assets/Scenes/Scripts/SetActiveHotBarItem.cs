@@ -48,12 +48,10 @@ namespace IndieGameAnimationStateData
             if (hotBar._SlotIndex >= 0 && hotBar._SlotIndex <= 3)
             {
 
-                if (!hotBar._CheckItemHeld())//check the specific item slot if held or not
-                {
-                    return;
-                }
+                //TODO: check if item slot does have held
+                //TODO: if it has; then want to switch other weapon slot that has held. it will not animate again just to switch weapon
 
-                if (hotBar._SetActiveSlotContainers[hotBar._ActivatedItemSlotContainer])
+                if (!hotBar._CheckItemHeld()) //check the hotbar slot if does have held
                 {
                     return;
                 }
@@ -64,7 +62,6 @@ namespace IndieGameAnimationStateData
                 }
 
                 isAnimateTranstion = true;
-                hotBar._SetActiveSlotContainers[hotBar._ActivatedItemSlotContainer] = true;
                 animator.SetBool(_ETransitionParameters.Equip.ToString(), isAnimateTranstion);//automatically turn off when switch animator
             }
             else if (hotBar._SlotIndex == -1)
@@ -80,7 +77,6 @@ namespace IndieGameAnimationStateData
                 }
 
                 isAnimateTranstion = true;
-                hotBar._SetActiveSlotContainers[hotBar._ActivatedItemSlotContainer] = false;
                 animator.SetBool(_ETransitionParameters.UnEquip.ToString(), isAnimateTranstion);//automatically turn off when switch animator
             }
         }

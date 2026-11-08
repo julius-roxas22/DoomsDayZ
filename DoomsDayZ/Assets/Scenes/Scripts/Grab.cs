@@ -16,9 +16,15 @@ namespace IndieGameAnimationStateData
         [SerializeField] private bool grabItem;
         [SerializeField] private string bodyPartName;
         private bool isAnimatated;
+        private PlayerVault playerVault;
 
         public override void OnEnterAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
+            if (null == playerVault)
+            {
+                playerVault = GameManager.GetInstance._GetPlayerVault();
+            }
+
             if (grabItem && disarmWeapon)
             {
                 grabItem = false;
@@ -42,7 +48,6 @@ namespace IndieGameAnimationStateData
                 }
                 isAnimatated = true;
             }
-
         }
 
         public override void OnExitAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
@@ -59,16 +64,7 @@ namespace IndieGameAnimationStateData
                 int rand = Random.Range(0, itemsDetects.Count - 1);
                 GameObject obj = itemsDetects[rand].gameObject;
                 WeaponManager.GetInstance._AddWeapon(character, obj);
-                setPosition(obj);
-                //  PlayerVault playerVault = GameManager.GetInstance._GetPlayerVault();
-                //   obj.transform.parent = playerVault.transform;
-                //obj.GetComponent<BoxCollider>().enabled = false;
-                //Rigidbody rb = obj.GetComponent<Rigidbody>();
-                //rb.useGravity = false;
-                //rb.isKinematic = true;
-                //obj.transform.localPosition = Vector3.zero;
-                //obj.transform.localRotation = Quaternion.identity;
-                //obj.SetActive(false);
+                playerVault._SetAsChildPosition(obj);
             }
         }
 
@@ -76,24 +72,24 @@ namespace IndieGameAnimationStateData
         {
             Transform bodyPartTransform = character._BodyPartTransform(bodyPartName); // get the parent transform
             GameObject obj1 = bodyPartTransform.GetChild(0).gameObject; //get the weapon from parent
-            setPosition(obj1);
+            playerVault._SetAsChildPosition(obj1);
             character._IsEquiped = false;
         }
 
-        private void setPosition(GameObject obj)
-        {
-            PlayerVault playerVault = GameManager.GetInstance._GetPlayerVault();
-            obj.transform.parent = playerVault.transform;
-            obj.GetComponent<BoxCollider>().enabled = false;
-            Rigidbody rb = obj.GetComponent<Rigidbody>();
-            if (null != rb)
-            {
-                rb.useGravity = false;
-                rb.isKinematic = true;
-            }
-            obj.transform.localPosition = Vector3.zero;
-            obj.transform.localRotation = Quaternion.identity;
-            obj.SetActive(false);
-        }
+        //private void setPosition(GameObject obj)
+        //{
+        //    PlayerVault playerVault = GameManager.GetInstance._GetPlayerVault();
+        //    obj.transform.parent = playerVault.transform;
+        //    obj.GetComponent<BoxCollider>().enabled = false;
+        //    Rigidbody rb = obj.GetComponent<Rigidbody>();
+        //    if (null != rb)
+        //    {
+        //        rb.useGravity = false;
+        //        rb.isKinematic = true;
+        //    }
+        //    obj.transform.localPosition = Vector3.zero;
+        //    obj.transform.localRotation = Quaternion.identity;
+        //    obj.SetActive(false);
+        //}
     }
 }

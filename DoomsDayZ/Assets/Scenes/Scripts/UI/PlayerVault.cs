@@ -37,5 +37,20 @@ namespace IndieGameUISystem
 
             return null;
         }
+
+        public void _SetAsChildPosition(GameObject obj)
+        {
+            obj.transform.parent = transform;
+            obj.GetComponent<BoxCollider>().enabled = false;
+            Rigidbody rb = obj.GetComponent<Rigidbody>();
+            if (null != rb)
+            {
+                rb.useGravity = false;
+                rb.isKinematic = true;
+            }
+            obj.transform.localPosition = Vector3.zero;
+            obj.transform.localRotation = Quaternion.identity;
+            obj.SetActive(false);
+        }
     }
 }

@@ -18,22 +18,9 @@ namespace IndieGameUISystem
 
     public class ItemHotBarContainer : MonoBehaviour
     {
-        public Dictionary<ItemSlotContainer, bool> _SetActiveSlotContainers = new Dictionary<ItemSlotContainer, bool>();
         public List<ItemSlotContainer> _ItemSlotContainerList = new List<ItemSlotContainer>();
         public ItemSlotContainer _ActivatedItemSlotContainer;
         public int _SlotIndex = -1;
-
-        private void Awake()
-        {
-            //set up the dictionary slot container
-            for (int i = 0; i < _ItemSlotContainerList.Count; i++)
-            {
-                if (!_SetActiveSlotContainers.ContainsKey(_ItemSlotContainerList[i]))
-                {
-                    _SetActiveSlotContainers[_ItemSlotContainerList[i]] = false;
-                }
-            }
-        }
 
         public bool _CheckItemSlotIsFull
         {
@@ -50,7 +37,7 @@ namespace IndieGameUISystem
             }
         }
 
-        public bool _CheckItemHeld()//check the slot container if does have item held
+        public bool _CheckItemHeld() //check the slot container if does have item held
         {
             ItemSlotContainer container = _ItemSlotContainerList[_SlotIndex];
             _ActivatedItemSlotContainer = container;
@@ -61,7 +48,7 @@ namespace IndieGameUISystem
             return false;
         }
 
-        public void _SetItemHeld(GameObject obj)
+        public void _SetItemHeld(GameObject obj) //when pick up the item it will add in weapon manager
         {
             ItemSlotContainer container = getSlotContainerHasntHeldItem;
             WeaponMelee melee = obj.GetComponent<WeaponMelee>();
@@ -69,6 +56,13 @@ namespace IndieGameUISystem
             container._ItemImage.sprite = weaponMeleeData._WeaponSpriteImage;
             container._WeaponMeleeData = weaponMeleeData;
             container._HasHeldItem = true;
+        }
+
+        public void switchItem(GameObject current, PlayerVault playerVault)
+        {
+
+            GameObject last = _ActivatedItemSlotContainer.gameObject;
+            playerVault._SetAsChildPosition(last);
         }
 
         private ItemSlotContainer getSlotContainerHasntHeldItem // get the slot container is not already held item
