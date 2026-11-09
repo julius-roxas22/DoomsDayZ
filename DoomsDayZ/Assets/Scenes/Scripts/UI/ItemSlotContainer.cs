@@ -13,6 +13,7 @@ namespace IndieGameUISystem
         public bool _HasHeldItem;
         public Image _ItemImage;
         public WeaponMeleeData _WeaponMeleeData;
+        public GameObject _ItemObjectPrefab;
 
         private void Awake() => _ItemImage = transform.GetChild(0).GetComponent<Image>();
 

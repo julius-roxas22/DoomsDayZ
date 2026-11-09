@@ -10,12 +10,14 @@ namespace IndieGameAnimationStateData
     [CreateAssetMenu(fileName = "New Ability", menuName = "IndieGamePractice/Ability/SetActiveHotBarItem")]
     public class SetActiveHotBarItem : BaseStateData
     {
-        [SerializeField] private bool isAnimateTranstion = false;
+        private bool isAnimateTranstion;
+        private bool isSwitchWeapon;
         private ItemHotBarContainer hotBar;
 
         public override void OnEnterAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
             isAnimateTranstion = false;
+            isSwitchWeapon = false;
             if (null == hotBar)
             {
                 hotBar = GameManager.GetInstance._GetItemHotbarContainer();
@@ -48,10 +50,7 @@ namespace IndieGameAnimationStateData
             if (hotBar._SlotIndex >= 0 && hotBar._SlotIndex <= 3)
             {
 
-                //TODO: check if item slot does have held
-                //TODO: if it has; then want to switch other weapon slot that has held. it will not animate again just to switch weapon
-
-                if (!hotBar._CheckItemHeld()) //check the hotbar slot if does have held
+                if (!hotBar._CheckItemHeld())
                 {
                     return;
                 }
@@ -61,8 +60,19 @@ namespace IndieGameAnimationStateData
                     return;
                 }
 
-                isAnimateTranstion = true;
-                animator.SetBool(_ETransitionParameters.Equip.ToString(), isAnimateTranstion);//automatically turn off when switch animator
+                if (!character._IsEquiped)
+                {
+                    isAnimateTranstion = true;
+                    animator.SetBool(_ETransitionParameters.SetArmed.ToString(), isAnimateTranstion);//automatically turn off when switch animator
+                }
+                else
+                {
+                    //if (!isSwitchWeapon)
+                    //{
+                    //    isSwitchWeapon = true;
+                    //}
+                        hotBar._SwitchItem(hotBar._ItemSlotContainerList[hotBar._SlotIndex].gameObject);
+                }
             }
             else if (hotBar._SlotIndex == -1)
             {
@@ -77,13 +87,14 @@ namespace IndieGameAnimationStateData
                 }
 
                 isAnimateTranstion = true;
-                animator.SetBool(_ETransitionParameters.UnEquip.ToString(), isAnimateTranstion);//automatically turn off when switch animator
+                animator.SetBool(_ETransitionParameters.SetArmed.ToString(), isAnimateTranstion);//automatically turn off when switch animator
             }
         }
 
         public override void OnExitAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
             isAnimateTranstion = false;
+            isSwitchWeapon = false;
             hotBar._SlotIndex = -2;
         }
     }

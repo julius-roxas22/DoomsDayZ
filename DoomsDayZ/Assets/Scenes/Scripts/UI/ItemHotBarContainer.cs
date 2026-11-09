@@ -21,6 +21,8 @@ namespace IndieGameUISystem
         public List<ItemSlotContainer> _ItemSlotContainerList = new List<ItemSlotContainer>();
         public ItemSlotContainer _ActivatedItemSlotContainer;
         public int _SlotIndex = -1;
+        public GameObject firstSlot;
+        public GameObject lastSlot;
 
         public bool _CheckItemSlotIsFull
         {
@@ -48,6 +50,21 @@ namespace IndieGameUISystem
             return false;
         }
 
+        public void _SwitchItem(GameObject newSlot)
+        {
+
+            if (null == firstSlot && null == lastSlot)
+            {
+                firstSlot = newSlot;
+                lastSlot = newSlot;
+            }
+            else
+            {
+                lastSlot = firstSlot;
+                firstSlot = newSlot;
+            }
+        }
+
         public void _SetItemHeld(GameObject obj) //when pick up the item it will add in weapon manager
         {
             ItemSlotContainer container = getSlotContainerHasntHeldItem;
@@ -55,14 +72,8 @@ namespace IndieGameUISystem
             WeaponMeleeData weaponMeleeData = melee._WeaponMeleeData;
             container._ItemImage.sprite = weaponMeleeData._WeaponSpriteImage;
             container._WeaponMeleeData = weaponMeleeData;
+            container._ItemObjectPrefab = obj;
             container._HasHeldItem = true;
-        }
-
-        public void switchItem(GameObject current, PlayerVault playerVault)
-        {
-
-            GameObject last = _ActivatedItemSlotContainer.gameObject;
-            playerVault._SetAsChildPosition(last);
         }
 
         private ItemSlotContainer getSlotContainerHasntHeldItem // get the slot container is not already held item
