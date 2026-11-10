@@ -8,8 +8,8 @@ using IndieGameUISystem;
 namespace IndieGameAnimationStateData
 {
     //this script is a state to grab the weapon with timing
-    [CreateAssetMenu(fileName = "New Ability", menuName = "IndieGamePractice/Ability/Grab")]
-    public class Grab : BaseStateData
+    [CreateAssetMenu(fileName = "New Ability", menuName = "IndieGamePractice/Ability/ArmedDisArmedState")]
+    public class ArmedDisArmedState : BaseStateData
     {
         [SerializeField] private float animationTiming;
         [SerializeField] private bool disarmWeapon;
@@ -75,21 +75,5 @@ namespace IndieGameAnimationStateData
             playerVault._SetAsChildPosition(obj1);
             character._IsEquiped = false;
         }
-
-        //private void setPosition(GameObject obj)
-        //{
-        //    PlayerVault playerVault = GameManager.GetInstance._GetPlayerVault();
-        //    obj.transform.parent = playerVault.transform;
-        //    obj.GetComponent<BoxCollider>().enabled = false;
-        //    Rigidbody rb = obj.GetComponent<Rigidbody>();
-        //    if (null != rb)
-        //    {
-        //        rb.useGravity = false;
-        //        rb.isKinematic = true;
-        //    }
-        //    obj.transform.localPosition = Vector3.zero;
-        //    obj.transform.localRotation = Quaternion.identity;
-        //    obj.SetActive(false);
-        //}
     }
 }

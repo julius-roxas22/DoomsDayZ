@@ -11,13 +11,11 @@ namespace IndieGameAnimationStateData
     public class SetActiveHotBarItem : BaseStateData
     {
         private bool isAnimateTranstion;
-        private bool isSwitchWeapon;
         private ItemHotBarContainer hotBar;
 
         public override void OnEnterAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
             isAnimateTranstion = false;
-            isSwitchWeapon = false;
             if (null == hotBar)
             {
                 hotBar = GameManager.GetInstance._GetItemHotbarContainer();
@@ -49,7 +47,6 @@ namespace IndieGameAnimationStateData
 
             if (hotBar._SlotIndex >= 0 && hotBar._SlotIndex <= 3)
             {
-
                 if (!hotBar._CheckItemHeld())
                 {
                     return;
@@ -67,11 +64,7 @@ namespace IndieGameAnimationStateData
                 }
                 else
                 {
-                    //if (!isSwitchWeapon)
-                    //{
-                    //    isSwitchWeapon = true;
-                    //}
-                        hotBar._SwitchItem(hotBar._ItemSlotContainerList[hotBar._SlotIndex].gameObject);
+                    hotBar._SwitchItem(hotBar._ItemSlotContainerList[hotBar._SlotIndex] , character , GameManager.GetInstance._GetPlayerVault());
                 }
             }
             else if (hotBar._SlotIndex == -1)
@@ -94,8 +87,8 @@ namespace IndieGameAnimationStateData
         public override void OnExitAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
             isAnimateTranstion = false;
-            isSwitchWeapon = false;
             hotBar._SlotIndex = -2;
+            //hotBar._ActivatedItemSlotContainer = null;
         }
     }
 }

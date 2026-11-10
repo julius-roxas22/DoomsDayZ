@@ -52,6 +52,7 @@ namespace IndieGameAnimationStateData
                 {
                     setWeaponPosition(character);//for player
                 }
+                Debug.Log("Weapon fixed");
                 isAnimated = true;
             }
         }
@@ -82,46 +83,20 @@ namespace IndieGameAnimationStateData
             PlayerVault playerVault = GameManager.GetInstance._GetPlayerVault();
             ItemHotBarContainer hotBar = GameManager.GetInstance._GetItemHotbarContainer();
 
-            GameObject weaponObject = playerVault._GetItemByData(hotBar._ActivatedItemSlotContainer._WeaponMeleeData);
+            GameObject weaponDataObject = playerVault._GetItemByData(hotBar._ActivatedItemSlotContainer._WeaponMeleeData);
             Transform parentTransform = character._BodyPartTransform(bodyPartName);
-            WeaponMelee weaponMelee = weaponObject.GetComponent<WeaponMelee>();
+            WeaponMelee weaponMelee = weaponDataObject.GetComponent<WeaponMelee>();
             parentTransform.localPosition = weaponMelee._WeaponMeleeData._Position;
             parentTransform.localRotation = Quaternion.Euler(weaponMelee._WeaponMeleeData._Rotations);
-            weaponObject.transform.parent = parentTransform;
-            weaponObject.transform.localPosition = Vector3.zero;
-            weaponObject.transform.localRotation = Quaternion.identity;
-            weaponObject.SetActive(true);
-            weaponObject.GetComponent<BoxCollider>().enabled = true;
-            //Rigidbody rb = weaponObject.GetComponent<Rigidbody>();
-            //rb.useGravity = true;
-            //rb.isKinematic = false;
+            weaponDataObject.transform.parent = parentTransform;
+            weaponDataObject.transform.localPosition = Vector3.zero;
+            weaponDataObject.transform.localRotation = Quaternion.identity;
+            weaponDataObject.SetActive(true);
+            weaponDataObject.GetComponent<BoxCollider>().enabled = true;
 
             character._IsEquiped = true;
             character._CharacterRagdoll.setupRagdollParts();
-            Destroy(weaponObject.GetComponent<Rigidbody>());
-
-
-            //GameObject weapon = WeaponManager.GetInstance._GetWeaponList(character)[0];//get the first weapon in the list
-            ////  WeaponMeleeData meleeData = weapon.GetComponent<WeaponMeleeData>();
-
-            //WeaponMelee melee = weapon.GetComponent<WeaponMelee>();
-            //WeaponMeleeData meleeData = melee._WeaponMeleeData;
-
-            //if (null == meleeData) return;
-
-            //Vector3 defaultScale = weapon.transform.localScale;
-            //Transform parentTransform = character._BodyPartTransform(bodyPartName);
-            //parentTransform.localPosition = meleeData._Position;
-            //parentTransform.localRotation = Quaternion.Euler(meleeData._Rotations);
-            //weapon.transform.parent = parentTransform;
-            //weapon.transform.localPosition = Vector3.zero;
-            //weapon.transform.localRotation = Quaternion.identity;
-            //weapon.transform.localScale = defaultScale;
-
-            //melee._ResetWeaponData();
-            ////character._IsEquiped = true;
-            //character._CharacterRagdoll.setupRagdollParts();
-            //Destroy(weapon.GetComponent<Rigidbody>());
+            Destroy(weaponDataObject.GetComponent<Rigidbody>());
         }
     }
 }

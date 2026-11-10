@@ -20,9 +20,10 @@ namespace IndieGameUISystem
     {
         public List<ItemSlotContainer> _ItemSlotContainerList = new List<ItemSlotContainer>();
         public ItemSlotContainer _ActivatedItemSlotContainer;
-        public int _SlotIndex = -1;
-        public GameObject firstSlot;
-        public GameObject lastSlot;
+        public int _SlotIndex = -2;
+
+        private ItemSlotContainer firstItemSlot;
+        private ItemSlotContainer lastSItemSlot;
 
         public bool _CheckItemSlotIsFull
         {
@@ -50,19 +51,43 @@ namespace IndieGameUISystem
             return false;
         }
 
-        public void _SwitchItem(GameObject newSlot)
+        public void _SwitchItem(ItemSlotContainer slot, Character character, PlayerVault playerVault)
         {
+            if (_SlotIndex == -2) return;
 
-            if (null == firstSlot && null == lastSlot)
+            if (null == firstItemSlot && null == lastSItemSlot)
             {
-                firstSlot = newSlot;
-                lastSlot = newSlot;
+                firstItemSlot = slot;
+                lastSItemSlot = slot;
             }
             else
             {
-                lastSlot = firstSlot;
-                firstSlot = newSlot;
+                lastSItemSlot = firstItemSlot;
+                firstItemSlot = slot;
             }
+
+            //set those position and transform
+            //last item slot goes to player vault
+            //first item slot goes to player
+
+            GameObject first = firstItemSlot._ItemObjectPrefab;
+            GameObject last = lastSItemSlot._ItemObjectPrefab;
+
+            playerVault._SetAsChildPosition(last);
+
+            Transform parentTransform = character._BodyPartTransform("WeaponSlot");
+            WeaponMelee weaponMelee = first.GetComponent<WeaponMelee>();
+            parentTransform.localPosition = weaponMelee._WeaponMeleeData._Position;
+            parentTransform.localRotation = Quaternion.Euler(weaponMelee._WeaponMeleeData._Rotations);
+            first.transform.parent = parentTransform;
+            first.transform.localPosition = Vector3.zero;
+            first.transform.localRotation = Quaternion.identity;
+            first.SetActive(true);
+            first.GetComponent<BoxCollider>().enabled = true;
+            character._CharacterRagdoll.setupRagdollParts();
+            Destroy(first.GetComponent<Rigidbody>());
+
+            _SlotIndex = -2;
         }
 
         public void _SetItemHeld(GameObject obj) //when pick up the item it will add in weapon manager
