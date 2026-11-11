@@ -22,8 +22,8 @@ namespace IndieGameUISystem
         public ItemSlotContainer _ActivatedItemSlotContainer;
         public int _SlotIndex = -2;
 
-        private ItemSlotContainer firstItemSlot;
-        private ItemSlotContainer lastSItemSlot;
+        [SerializeField] private ItemSlotContainer firstItemSlot;
+        [SerializeField] private ItemSlotContainer lastItemSlot;
 
         public bool _CheckItemSlotIsFull
         {
@@ -46,7 +46,12 @@ namespace IndieGameUISystem
             _ActivatedItemSlotContainer = container;
             if (container._HasHeldItem)
             {
-                return true;
+                if (null == firstItemSlot && null == lastItemSlot)
+                {
+                    firstItemSlot = container;
+                    lastItemSlot = container;
+                    return true;
+                }
             }
             return false;
         }
@@ -55,26 +60,17 @@ namespace IndieGameUISystem
         {
             if (_SlotIndex == -2) return;
 
-            if (null == firstItemSlot && null == lastSItemSlot)
-            {
-                firstItemSlot = slot;
-                lastSItemSlot = slot;
-            }
-            else
-            {
-                lastSItemSlot = firstItemSlot;
-                firstItemSlot = slot;
-            }
+            lastItemSlot = firstItemSlot;
+            firstItemSlot = slot;
 
             //set those position and transform
             //last item slot goes to player vault
             //first item slot goes to player
 
             GameObject first = firstItemSlot._ItemObjectPrefab;
-            GameObject last = lastSItemSlot._ItemObjectPrefab;
+            GameObject last = lastItemSlot._ItemObjectPrefab;
 
             playerVault._SetAsChildPosition(last);
-
             Transform parentTransform = character._BodyPartTransform("WeaponSlot");
             WeaponMelee weaponMelee = first.GetComponent<WeaponMelee>();
             parentTransform.localPosition = weaponMelee._WeaponMeleeData._Position;
@@ -86,7 +82,6 @@ namespace IndieGameUISystem
             first.GetComponent<BoxCollider>().enabled = true;
             character._CharacterRagdoll.setupRagdollParts();
             Destroy(first.GetComponent<Rigidbody>());
-
             _SlotIndex = -2;
         }
 

@@ -47,6 +47,7 @@ namespace IndieGameAnimationStateData
 
             if (hotBar._SlotIndex >= 0 && hotBar._SlotIndex <= 3)
             {
+
                 if (!hotBar._CheckItemHeld())
                 {
                     return;
@@ -64,7 +65,7 @@ namespace IndieGameAnimationStateData
                 }
                 else
                 {
-                    hotBar._SwitchItem(hotBar._ItemSlotContainerList[hotBar._SlotIndex] , character , GameManager.GetInstance._GetPlayerVault());
+                    hotBar._SwitchItem(hotBar._ItemSlotContainerList[hotBar._SlotIndex], character, GameManager.GetInstance._GetPlayerVault());
                 }
             }
             else if (hotBar._SlotIndex == -1)
@@ -88,7 +89,6 @@ namespace IndieGameAnimationStateData
         {
             isAnimateTranstion = false;
             hotBar._SlotIndex = -2;
-            //hotBar._ActivatedItemSlotContainer = null;
         }
     }
 }

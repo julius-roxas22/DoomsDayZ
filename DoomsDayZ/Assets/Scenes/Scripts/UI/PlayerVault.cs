@@ -41,6 +41,8 @@ namespace IndieGameUISystem
         public void _SetAsChildPosition(GameObject obj)
         {
             obj.transform.parent = transform;
+            obj.transform.localPosition = Vector3.zero;
+            obj.transform.localRotation = Quaternion.identity;
             obj.GetComponent<BoxCollider>().enabled = false;
             Rigidbody rb = obj.GetComponent<Rigidbody>();
             if (null != rb)
@@ -48,8 +50,6 @@ namespace IndieGameUISystem
                 rb.useGravity = false;
                 rb.isKinematic = true;
             }
-            obj.transform.localPosition = Vector3.zero;
-            obj.transform.localRotation = Quaternion.identity;
             obj.SetActive(false);
         }
     }
