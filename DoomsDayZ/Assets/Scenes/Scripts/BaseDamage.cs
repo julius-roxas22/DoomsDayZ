@@ -13,7 +13,7 @@ namespace IndieGameAnimationStateData
     public class BaseDamage : BaseStateData
     {
         [Header("Basic Setup")]
-        public _EProjectileType _ProjectileType; // just to initiate specific poolobject prefab
+        public _EProjectileType _ProjectileType; // just to initiate specific pool object prefab
         public float _StartTime;
         public float _EndTime;
         public bool _MustCollide;
@@ -38,8 +38,6 @@ namespace IndieGameAnimationStateData
 
         Dictionary<Character, AttackInfo> _DicCurrentAttack = new Dictionary<Character, AttackInfo>();
 
-        //private AudioSource source;
-
         public override void OnEnterAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
             character._AttackTriggered = false;
@@ -53,15 +51,7 @@ namespace IndieGameAnimationStateData
 
             if (character._IsEquiped) // set a value if player have weapon and equiped
             {
-                List<GameObject> weaponList = WeaponManager.GetInstance._GetWeaponList(character);
-
-                if (weaponList.Count > 0 && null != weaponList)
-                {
-                    if (null == _WeaponMelee)
-                    {
-                        _WeaponMelee = weaponList[0].GetComponent<WeaponMelee>();
-                    }
-                }
+                _WeaponMelee = character._WeaponOnHand.GetComponent<WeaponMelee>();
             }
 
             if (!_DicCurrentAttack.TryGetValue(character, out AttackInfo info))//check if there is already current attack of a single character

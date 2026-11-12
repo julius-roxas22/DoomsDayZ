@@ -52,8 +52,10 @@ namespace IndieGameUISystem
 
             character._IsEquiped = isEquip;
             character._CharacterRagdoll._SetupRagdollParts();
+            character._WeaponOnHand = weaponObject;
             Destroy(weaponObject.GetComponent<Rigidbody>());
         }
+
         public void _SetWeaponPosition(Character character, GameObject weaponObject, string bodyPartName)
         {
             Transform parentTransform = character._BodyPartTransform(bodyPartName);
@@ -67,6 +69,7 @@ namespace IndieGameUISystem
             weaponObject.GetComponent<BoxCollider>().enabled = true;
 
             character._CharacterRagdoll._SetupRagdollParts();
+            character._WeaponOnHand = weaponObject;
             Destroy(weaponObject.GetComponent<Rigidbody>());
         }
 

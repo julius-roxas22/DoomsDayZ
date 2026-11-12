@@ -115,7 +115,7 @@ namespace IndieGameAttackSystem
 
                     foreach (string part in info._AttackParts) //need to change this line of code
                     {
-                        if (col.name.Equals(part))
+                        if (col.name.Contains(part))
                         {
                             character._CharacterRagdoll._Attacker = info._Attacker;
                             character._CharacterRagdoll._DirectionDamageImpact = new Vector3(info._BaseDamageType._XForce, info._BaseDamageType._YForce, info._BaseDamageType._ZForce);

@@ -15,4 +15,3 @@ MonoBehaviour:
   _AudioType: 4
   _Clips:
   - {fileID: 8300000, guid: 39b33504bb9906d4b894941a4542e033, type: 3}
-  - {fileID: 8300000, guid: 147066ff24f9cfb44b1cd36aa523c092, type: 3}

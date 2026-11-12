@@ -22,17 +22,21 @@ namespace IndieGameCharacterControllerSystem
 
     public class Character : MonoBehaviour
     {
+        [Header("Basic Setup")]
         public _ECameraCharacterSelectParameters _CharacterNameType;
         public _EAllyType _AllyType;
         public bool _IsEquiped;//temp variable
         public bool _EnableHitReaction;
+        public GameObject _WeaponOnHand;
+
+        [Space(17)]
+        [Header("Components")]
         public HealthSystem _HealthSystem;
         public Animator _Animator;
         public Rigidbody _RigidBody;
         public VicinityDetector _VicinityDetector;
         public Controller _Controller;
         public SubController _SubController;
-        //public List<GameObject> _EnvironmentDetectedList = new List<GameObject>();
         public BoxCollider _BoxCollider;
         public CharacterRagdoll _CharacterRagdoll;
         public Vector3 _MoveDirection = new Vector3();

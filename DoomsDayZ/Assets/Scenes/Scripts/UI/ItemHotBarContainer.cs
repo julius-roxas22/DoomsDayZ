@@ -7,15 +7,6 @@ using IndieGameCharacterControllerSystem;
 
 namespace IndieGameUISystem
 {
-    //public enum _EActivatedSlotItemKey
-    //{
-    //    None,
-    //    InputKey1,
-    //    InputKey2,
-    //    InputKey3,
-    //    InputKey4,
-    //}
-
     public class ItemHotBarContainer : MonoBehaviour
     {
         public List<ItemSlotContainer> _ItemSlotContainerList = new List<ItemSlotContainer>();
@@ -40,7 +31,7 @@ namespace IndieGameUISystem
             }
         }
 
-        public bool _CheckItemHeld(ItemSlotContainer slot) //check the slot container if does have item held
+        public bool _CheckItemHeld() //check the slot container if does have item held
         {
             ItemSlotContainer container = _ItemSlotContainerList[_SlotIndex];
             _ActivatedItemSlotContainer = container;
@@ -55,7 +46,7 @@ namespace IndieGameUISystem
                 else
                 {
                     lastItemSlot = firstItemSlot;
-                    firstItemSlot = slot;
+                    firstItemSlot = container;
                 }
                 return true;
             }

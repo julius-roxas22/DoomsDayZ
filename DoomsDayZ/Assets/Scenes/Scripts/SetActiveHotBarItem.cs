@@ -47,7 +47,7 @@ namespace IndieGameAnimationStateData
 
             if (hotBar._SlotIndex >= 0 && hotBar._SlotIndex <= 3)
             {
-                if (!hotBar._CheckItemHeld(hotBar._ItemSlotContainerList[hotBar._SlotIndex]))
+                if (!hotBar._CheckItemHeld())
                 {
                     return;
                 }

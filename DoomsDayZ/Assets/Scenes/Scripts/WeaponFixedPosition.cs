@@ -52,7 +52,6 @@ namespace IndieGameAnimationStateData
                 {
                     setWeaponPosition(character);//for player
                 }
-                Debug.Log("Weapon fixed");
                 isAnimated = true;
             }
         }
