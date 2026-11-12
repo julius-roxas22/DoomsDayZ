@@ -38,6 +38,38 @@ namespace IndieGameUISystem
             return null;
         }
 
+        public void _SetWeaponPosition(bool isEquip, Character character, GameObject weaponObject, string bodyPartName)
+        {
+            Transform parentTransform = character._BodyPartTransform(bodyPartName);
+            WeaponMelee weaponMelee = weaponObject.GetComponent<WeaponMelee>();
+            parentTransform.localPosition = weaponMelee._WeaponMeleeData._Position;
+            parentTransform.localRotation = Quaternion.Euler(weaponMelee._WeaponMeleeData._Rotations);
+            weaponObject.transform.parent = parentTransform;
+            weaponObject.transform.localPosition = Vector3.zero;
+            weaponObject.transform.localRotation = Quaternion.identity;
+            weaponObject.SetActive(true);
+            weaponObject.GetComponent<BoxCollider>().enabled = true;
+
+            character._IsEquiped = isEquip;
+            character._CharacterRagdoll._SetupRagdollParts();
+            Destroy(weaponObject.GetComponent<Rigidbody>());
+        }
+        public void _SetWeaponPosition(Character character, GameObject weaponObject, string bodyPartName)
+        {
+            Transform parentTransform = character._BodyPartTransform(bodyPartName);
+            WeaponMelee weaponMelee = weaponObject.GetComponent<WeaponMelee>();
+            parentTransform.localPosition = weaponMelee._WeaponMeleeData._Position;
+            parentTransform.localRotation = Quaternion.Euler(weaponMelee._WeaponMeleeData._Rotations);
+            weaponObject.transform.parent = parentTransform;
+            weaponObject.transform.localPosition = Vector3.zero;
+            weaponObject.transform.localRotation = Quaternion.identity;
+            weaponObject.SetActive(true);
+            weaponObject.GetComponent<BoxCollider>().enabled = true;
+
+            character._CharacterRagdoll._SetupRagdollParts();
+            Destroy(weaponObject.GetComponent<Rigidbody>());
+        }
+
         public void _SetAsChildPosition(GameObject obj)
         {
             obj.transform.parent = transform;

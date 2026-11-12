@@ -47,8 +47,7 @@ namespace IndieGameAnimationStateData
 
             if (hotBar._SlotIndex >= 0 && hotBar._SlotIndex <= 3)
             {
-
-                if (!hotBar._CheckItemHeld())
+                if (!hotBar._CheckItemHeld(hotBar._ItemSlotContainerList[hotBar._SlotIndex]))
                 {
                     return;
                 }
@@ -65,7 +64,7 @@ namespace IndieGameAnimationStateData
                 }
                 else
                 {
-                    hotBar._SwitchItem(hotBar._ItemSlotContainerList[hotBar._SlotIndex], character, GameManager.GetInstance._GetPlayerVault());
+                    hotBar._SwitchItem(character);
                 }
             }
             else if (hotBar._SlotIndex == -1)

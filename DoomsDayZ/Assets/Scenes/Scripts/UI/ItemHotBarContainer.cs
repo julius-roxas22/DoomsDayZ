@@ -40,28 +40,31 @@ namespace IndieGameUISystem
             }
         }
 
-        public bool _CheckItemHeld() //check the slot container if does have item held
+        public bool _CheckItemHeld(ItemSlotContainer slot) //check the slot container if does have item held
         {
             ItemSlotContainer container = _ItemSlotContainerList[_SlotIndex];
             _ActivatedItemSlotContainer = container;
+
             if (container._HasHeldItem)
             {
                 if (null == firstItemSlot && null == lastItemSlot)
                 {
                     firstItemSlot = container;
                     lastItemSlot = container;
-                    return true;
                 }
+                else
+                {
+                    lastItemSlot = firstItemSlot;
+                    firstItemSlot = slot;
+                }
+                return true;
             }
             return false;
         }
 
-        public void _SwitchItem(ItemSlotContainer slot, Character character, PlayerVault playerVault)
+        public void _SwitchItem(Character character)
         {
             if (_SlotIndex == -2) return;
-
-            lastItemSlot = firstItemSlot;
-            firstItemSlot = slot;
 
             //set those position and transform
             //last item slot goes to player vault
@@ -70,18 +73,21 @@ namespace IndieGameUISystem
             GameObject first = firstItemSlot._ItemObjectPrefab;
             GameObject last = lastItemSlot._ItemObjectPrefab;
 
+            PlayerVault playerVault = GameManager.GetInstance._GetPlayerVault();
             playerVault._SetAsChildPosition(last);
-            Transform parentTransform = character._BodyPartTransform("WeaponSlot");
-            WeaponMelee weaponMelee = first.GetComponent<WeaponMelee>();
-            parentTransform.localPosition = weaponMelee._WeaponMeleeData._Position;
-            parentTransform.localRotation = Quaternion.Euler(weaponMelee._WeaponMeleeData._Rotations);
-            first.transform.parent = parentTransform;
-            first.transform.localPosition = Vector3.zero;
-            first.transform.localRotation = Quaternion.identity;
-            first.SetActive(true);
-            first.GetComponent<BoxCollider>().enabled = true;
-            character._CharacterRagdoll.setupRagdollParts();
-            Destroy(first.GetComponent<Rigidbody>());
+            playerVault._SetWeaponPosition(character, first, "WeaponSlot");
+            //Transform parentTransform = character._BodyPartTransform("WeaponSlot");
+            //WeaponMelee weaponMelee = first.GetComponent<WeaponMelee>();
+            //parentTransform.localPosition = weaponMelee._WeaponMeleeData._Position;
+            //parentTransform.localRotation = Quaternion.Euler(weaponMelee._WeaponMeleeData._Rotations);
+            //first.transform.parent = parentTransform;
+            //first.transform.localPosition = Vector3.zero;
+            //first.transform.localRotation = Quaternion.identity;
+            //first.SetActive(true);
+            //first.GetComponent<BoxCollider>().enabled = true;
+            //character._CharacterRagdoll._SetupRagdollParts();
+            //Destroy(first.GetComponent<Rigidbody>());
+
             _SlotIndex = -2;
         }
 

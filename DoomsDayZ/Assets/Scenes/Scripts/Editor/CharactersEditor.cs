@@ -17,7 +17,7 @@ namespace IndieGameEditor
 
             if (GUILayout.Button("Setup Ragdoll"))
             {
-                characterRagdoll.setupRagdollParts();
+                characterRagdoll._SetupRagdollParts();
                 if (characterRagdoll._RagdollParts.Count > 0)
                 {
                     Debug.Log("Successfully setup ragdoll");

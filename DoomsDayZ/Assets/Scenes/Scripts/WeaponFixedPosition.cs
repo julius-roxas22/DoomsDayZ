@@ -84,19 +84,20 @@ namespace IndieGameAnimationStateData
             ItemHotBarContainer hotBar = GameManager.GetInstance._GetItemHotbarContainer();
 
             GameObject weaponDataObject = playerVault._GetItemByData(hotBar._ActivatedItemSlotContainer._WeaponMeleeData);
-            Transform parentTransform = character._BodyPartTransform(bodyPartName);
-            WeaponMelee weaponMelee = weaponDataObject.GetComponent<WeaponMelee>();
-            parentTransform.localPosition = weaponMelee._WeaponMeleeData._Position;
-            parentTransform.localRotation = Quaternion.Euler(weaponMelee._WeaponMeleeData._Rotations);
-            weaponDataObject.transform.parent = parentTransform;
-            weaponDataObject.transform.localPosition = Vector3.zero;
-            weaponDataObject.transform.localRotation = Quaternion.identity;
-            weaponDataObject.SetActive(true);
-            weaponDataObject.GetComponent<BoxCollider>().enabled = true;
+            playerVault._SetWeaponPosition(true, character, weaponDataObject, bodyPartName);
+            //Transform parentTransform = character._BodyPartTransform(bodyPartName);
+            //WeaponMelee weaponMelee = weaponDataObject.GetComponent<WeaponMelee>();
+            //parentTransform.localPosition = weaponMelee._WeaponMeleeData._Position;
+            //parentTransform.localRotation = Quaternion.Euler(weaponMelee._WeaponMeleeData._Rotations);
+            //weaponDataObject.transform.parent = parentTransform;
+            //weaponDataObject.transform.localPosition = Vector3.zero;
+            //weaponDataObject.transform.localRotation = Quaternion.identity;
+            //weaponDataObject.SetActive(true);
+            //weaponDataObject.GetComponent<BoxCollider>().enabled = true;
 
-            character._IsEquiped = true;
-            character._CharacterRagdoll.setupRagdollParts();
-            Destroy(weaponDataObject.GetComponent<Rigidbody>());
+            //character._IsEquiped = true;
+            //character._CharacterRagdoll._SetupRagdollParts();
+            //Destroy(weaponDataObject.GetComponent<Rigidbody>());
         }
     }
 }

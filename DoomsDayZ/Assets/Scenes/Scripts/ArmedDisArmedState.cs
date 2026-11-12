@@ -74,6 +74,7 @@ namespace IndieGameAnimationStateData
             GameObject obj1 = bodyPartTransform.GetChild(0).gameObject; //get the weapon from parent
             playerVault._SetAsChildPosition(obj1);
             character._IsEquiped = false;
+            character._CharacterRagdoll._SetupRagdollParts();
         }
     }
 }

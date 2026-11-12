@@ -330,6 +330,8 @@ MonoBehaviour:
   - {fileID: 191344190}
   _ActivatedItemSlotContainer: {fileID: 0}
   _SlotIndex: -1
+  firstItemSlot: {fileID: 0}
+  lastItemSlot: {fileID: 0}
 --- !u!1001 &77936506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -947,6 +949,7 @@ MonoBehaviour:
   _HasHeldItem: 0
   _ItemImage: {fileID: 0}
   _WeaponMeleeData: {fileID: 0}
+  _ItemObjectPrefab: {fileID: 0}
 --- !u!1 &194362966
 GameObject:
   m_ObjectHideFlags: 0
@@ -4949,6 +4952,7 @@ MonoBehaviour:
   _HasHeldItem: 0
   _ItemImage: {fileID: 0}
   _WeaponMeleeData: {fileID: 0}
+  _ItemObjectPrefab: {fileID: 0}
 --- !u!114 &973824124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6926,6 +6930,7 @@ MonoBehaviour:
   _HasHeldItem: 0
   _ItemImage: {fileID: 0}
   _WeaponMeleeData: {fileID: 0}
+  _ItemObjectPrefab: {fileID: 0}
 --- !u!114 &1341231527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8477,6 +8482,7 @@ MonoBehaviour:
   _HasHeldItem: 0
   _ItemImage: {fileID: 0}
   _WeaponMeleeData: {fileID: 0}
+  _ItemObjectPrefab: {fileID: 0}
 --- !u!114 &1777066820
 MonoBehaviour:
   m_ObjectHideFlags: 0

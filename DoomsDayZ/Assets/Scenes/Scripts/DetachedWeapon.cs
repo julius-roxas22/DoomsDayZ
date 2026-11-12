@@ -88,7 +88,7 @@ namespace IndieGameAnimationStateData
             GameObject weapon = weaponList[0];
             WeaponMelee projectile = weapon.GetComponent<WeaponMelee>();
             weapon.transform.parent = null;
-            character._CharacterRagdoll.setupRagdollParts(); // reset the character ragdoll parts to detect the collision of every attack
+            character._CharacterRagdoll._SetupRagdollParts(); // reset the character ragdoll parts to detect the collision of every attack
             character._IsEquiped = false; // set the character to un equip
             WeaponManager.GetInstance._RemoveWeapon(character, weapon); // remove from the weapon list of specific character
             Destroy(weapon.GetComponent<TriggerDetector>());

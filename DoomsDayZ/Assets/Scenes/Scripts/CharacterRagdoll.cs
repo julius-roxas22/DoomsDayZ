@@ -31,7 +31,7 @@ namespace IndieGameCharacterControllerSystem
             progress = GetComponent<AudioProgress>();
         }
 
-        public void setupRagdollParts()
+        public void _SetupRagdollParts()
         {
             _RagdollParts.Clear();
 
