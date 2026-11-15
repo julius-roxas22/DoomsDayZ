@@ -6676,12 +6676,7 @@ PrefabInstance:
     - target: {fileID: 7291534041142480270, guid: ecc914cc7ced152459515f633432feb6,
         type: 3}
       propertyPath: m_Name
-      value: Zombie Romero
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291534041142480270, guid: ecc914cc7ced152459515f633432feb6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      value: Zombie Yaku
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

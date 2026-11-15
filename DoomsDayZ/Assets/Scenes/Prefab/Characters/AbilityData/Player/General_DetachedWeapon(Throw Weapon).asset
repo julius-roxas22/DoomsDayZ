@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c804713a13b0f74fb238783f3071290, type: 3}
-  m_Name: GeneralGroundDetector
+  m_Script: {fileID: 11500000, guid: a46e340741a18c54792db0dfb667bfa6, type: 3}
+  m_Name: General_DetachedWeapon(Throw Weapon)
   m_EditorClassIdentifier: 
-  radius: 1
-  goundMask:
-    serializedVersion: 2
-    m_Bits: 64
+  detachedTiming: 0.42
+  detachedRange: 0.72
+  throwable: 1
+  throwForce: 400

@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fb5e067bec2fd74993e1aa4091802dc, type: 3}
-  m_Name: PickOrDropWeapon (Drop)
+  m_Script: {fileID: 11500000, guid: a46e340741a18c54792db0dfb667bfa6, type: 3}
+  m_Name: General_DetachItem(DropWeapon)
   m_EditorClassIdentifier: 
-  weaponMask:
-    serializedVersion: 2
-    m_Bits: 128
-  onDropWeapon: 1
+  detachedTiming: 0.5
+  detachedRange: 0.4
+  canThrowWeapon: 0
+  throwForce: 0

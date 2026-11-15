@@ -3996,12 +3996,12 @@ GameObject:
   - component: {fileID: 5440343169500181368}
   - component: {fileID: 5075496030327522806}
   m_Layer: 9
-  m_Name: Zombie Romero
+  m_Name: Zombie Yaku
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4292519174238974944
 Transform:
   m_ObjectHideFlags: 0
@@ -4038,6 +4038,7 @@ MonoBehaviour:
   _AllyType: 1
   _IsEquiped: 0
   _EnableHitReaction: 0
+  _WeaponOnHand: {fileID: 0}
   _HealthSystem: {fileID: 0}
   _Animator: {fileID: 0}
   _RigidBody: {fileID: 0}
@@ -4089,6 +4090,11 @@ MonoBehaviour:
   _IsGrabbingWeapon: 0
   _IsDroppingWeapon: 0
   _IsPressedKeyR: 0
+  _IsPressKeyX: 0
+  _IsPressedKey1: 0
+  _IsPressedKey2: 0
+  _IsPressedKey3: 0
+  _IsPressedKey4: 0
   _IsJumped: 0
 --- !u!114 &6119945966152142298
 MonoBehaviour:
