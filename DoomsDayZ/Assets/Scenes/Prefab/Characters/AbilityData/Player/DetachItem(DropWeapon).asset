@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a46e340741a18c54792db0dfb667bfa6, type: 3}
-  m_Name: DetachWeapon(DropWeapon)
+  m_Name: DetachItem(DropWeapon)
   m_EditorClassIdentifier: 
   detachedTiming: 0.5
   detachedRange: 0.4

@@ -13,7 +13,7 @@ namespace IndieGameCharacterControllerSystem
         NextState,
         IsGrounded,
         Attack,
-        IsGrabbingWeapon,
+        IsGrabbingItem,
         IsDroppingWeapon,
         TransitionIndex,
         TurnLeft,

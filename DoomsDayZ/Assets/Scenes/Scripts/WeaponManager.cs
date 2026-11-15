@@ -57,6 +57,7 @@ namespace IndieGameManagersSystem
             {
                 weaponList.Remove(weapon);
             }
+            GameManager.GetInstance._GetItemHotbarContainer()._UpdateSlotContainer();
         }
 
         public List<GameObject> _GetWeaponList(Character c)

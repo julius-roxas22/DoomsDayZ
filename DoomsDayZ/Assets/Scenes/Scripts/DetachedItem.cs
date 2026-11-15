@@ -4,12 +4,13 @@ using UnityEngine;
 using IndieGameCharacterControllerSystem;
 using IndieGameManagersSystem;
 using IndieGameInventorySystem;
+using IndieGameUISystem;
 
 namespace IndieGameAnimationStateData
 {
     //is simply detached the weapon on the characater on its position assigned
     [CreateAssetMenu(fileName = "New Ability", menuName = "IndieGamePractice/Ability/DetachedWeapon")]
-    public class DetachedWeapon : BaseStateData
+    public class DetachedItem : BaseStateData
     {
         [Header("Basic Setup for Detach weapon")]
         [SerializeField] private float detachedTiming;
@@ -18,15 +19,17 @@ namespace IndieGameAnimationStateData
         [Space(10)]
         [Header("Setup for throwable weapon")]
         [SerializeField] private bool throwable;
+        private bool isDoneDetached;
 
         public override void OnEnterAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
+            isDoneDetached = false;
             //isThrowingSoundEffect = false;
         }
 
         public override void OnUpdateAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
-            if (stateInfo.normalizedTime >= detachedTiming)
+            if (stateInfo.normalizedTime >= detachedTiming && !isDoneDetached)
             {
                 if (character._SubController.enabled)
                 {
@@ -34,17 +37,18 @@ namespace IndieGameAnimationStateData
                 }
                 else
                 {
-                    detachHeavyWeapon(character); // for npc boss thrower
+                    throwHeavyObject(character); // for npc boss thrower
                 }
+                isDoneDetached = true;
             }
         }
 
         public override void OnExitAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
-
+            isDoneDetached = false;
         }
 
-        private void detachHeavyWeapon(Character character)
+        private void throwHeavyObject(Character character)
         {
             //movable object
             //take damage the target
@@ -78,37 +82,42 @@ namespace IndieGameAnimationStateData
 
         private void detachWeapon(Character character)
         {
-            List<GameObject> weaponList = WeaponManager.GetInstance._GetWeaponList(character); // get the weapon list of the specific character
+            PlayerVault playerVault = GameManager.GetInstance._GetPlayerVault();
+            WeaponMeleeData weaponMeleeData = character._WeaponOnHand.GetComponent<WeaponMelee>()._WeaponMeleeData;
+            GameObject weaponObject = playerVault._GetItemByData(weaponMeleeData);
 
-            if (weaponList.Count == 0)
-            {
-                return;
-            }
+            //List<GameObject> weaponList = WeaponManager.GetInstance._GetWeaponList(character); // get the weapon list of the specific character
 
-            GameObject weapon = weaponList[0];
-            WeaponMelee projectile = weapon.GetComponent<WeaponMelee>();
-            weapon.transform.parent = null;
+            //if (weaponList.Count == 0)
+            //{
+            //    return;
+            //}
+
+            //GameObject weapon = weaponList[0];
+            WeaponMelee weaponMelee = weaponObject.GetComponent<WeaponMelee>();
+            weaponObject.transform.parent = null;
             character._CharacterRagdoll._SetupRagdollParts(); // reset the character ragdoll parts to detect the collision of every attack
             character._IsEquiped = false; // set the character to un equip
-            WeaponManager.GetInstance._RemoveWeapon(character, weapon); // remove from the weapon list of specific character
-            Destroy(weapon.GetComponent<TriggerDetector>());
-            projectile._RigidBody = weapon.AddComponent<Rigidbody>();
+            WeaponManager.GetInstance._RemoveWeapon(character, weaponObject); // remove from the weapon list of specific character
+            playerVault._Items.Remove(weaponObject);
+            Destroy(weaponObject.GetComponent<TriggerDetector>());
+            weaponMelee._RigidBody = weaponObject.AddComponent<Rigidbody>();
 
             if (!throwable) // just to drop infront of the character
             {
-                weapon.transform.position = character.transform.position + ((character.transform.forward + Vector3.up * 0.35f) * detachedRange);
-                projectile._BoxCollider.isTrigger = false;
+                weaponObject.transform.position = character.transform.position + ((character.transform.forward + Vector3.up * 0.35f) * detachedRange);
+                weaponMelee._BoxCollider.isTrigger = false;
             }
             else // throw infront of the character
             {
-                projectile._IsThrowing = true;
-                projectile._Attacker = character; //set who is the thrower of this weapon
-                projectile.transform.position = character.transform.position + Vector3.up * 1.5f + (character.transform.forward * detachedRange); // start position
-                projectile.transform.rotation = Quaternion.LookRotation(character.transform.right);// just to face the right direction
-                projectile._MoveDirection = character.transform.forward;// just to move infront of the character
-                projectile.startPointPosition = projectile.transform.position;
-                projectile._RigidBody.isKinematic = true;
-                projectile._BoxCollider.isTrigger = true;
+                weaponMelee._IsThrowing = true;
+                weaponMelee._Attacker = character; //set who is the thrower of this weapon
+                weaponMelee.transform.position = character.transform.position + Vector3.up * 1.5f + (character.transform.forward * detachedRange); // start position
+                weaponMelee.transform.rotation = Quaternion.LookRotation(character.transform.right);// just to face the right direction
+                weaponMelee._MoveDirection = character.transform.forward;// just to move infront of the character
+                weaponMelee.startPointPosition = weaponMelee.transform.position;
+                weaponMelee._RigidBody.isKinematic = true;
+                weaponMelee._BoxCollider.isTrigger = true;
                 character._HealthSystem._DefenseData._CurrentStamina -= 20f; // deducted stamina when weapon throws it
             }
         }

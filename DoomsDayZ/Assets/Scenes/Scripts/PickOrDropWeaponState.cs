@@ -25,13 +25,6 @@ namespace IndieGameAnimationStateData
 
             if (onDropWeapon)
             {
-                //if we already have weapon equiped
-                //we can drop it on the same location of the character
-                // if there is no weapon equiped or no weapon yet we cant drop something
-                //if (!character._IsEquiped)
-                //{
-                //    return;
-                //}
                 if (character._Controller._IsDroppingWeapon)
                 {
                     animator.SetBool(_ETransitionParameters.IsDroppingWeapon.ToString(), true);
@@ -51,7 +44,7 @@ namespace IndieGameAnimationStateData
                 {
                     if (!GameManager.GetInstance._GetItemHotbarContainer()._CheckItemSlotIsFull)
                     {
-                        animator.SetBool(_ETransitionParameters.IsGrabbingWeapon.ToString(), true);
+                        animator.SetBool(_ETransitionParameters.IsGrabbingItem.ToString(), true);
                     }
                     else
                     {
@@ -64,7 +57,7 @@ namespace IndieGameAnimationStateData
 
         public override void OnExitAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
-            animator.SetBool(_ETransitionParameters.IsGrabbingWeapon.ToString(), false);
+            animator.SetBool(_ETransitionParameters.IsGrabbingItem.ToString(), false);
             animator.SetBool(_ETransitionParameters.IsDroppingWeapon.ToString(), false);
         }
     }

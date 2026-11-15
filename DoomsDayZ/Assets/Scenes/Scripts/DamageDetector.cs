@@ -79,8 +79,9 @@ namespace IndieGameAttackSystem
             AudioProgress progress = null;
             if (attacker._IsEquiped)
             {
-                List<GameObject> list = WeaponManager.GetInstance._GetWeaponList(attacker);
-                progress = list[0].GetComponent<AudioProgress>(); //get the weapon progress property
+                //List<GameObject> list = WeaponManager.GetInstance._GetWeaponList(attacker);
+                //progress = list[0].GetComponent<AudioProgress>();
+                progress = attacker._WeaponOnHand?.GetComponent<AudioProgress>();
                 _EAudioType audioType = _EAudioType.NONE;
                 foreach (AudioData data in progress._AudioDatas)
                 {

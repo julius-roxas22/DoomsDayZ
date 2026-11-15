@@ -108,33 +108,39 @@ namespace IndieGameUISystem
             }
         }
 
-        public ItemSlotContainer _GetItemActive // get the slot container active equiped
-        {
-            get
-            {
-                foreach (ItemSlotContainer c in _ItemSlotContainerList)
-                {
-                    if (c._ItemSetActive)
-                    {
-                        return c;
-                    }
-                }
-                return null;
-            }
-        }
-
-        //public void _UpdateItemHeld(WeaponMeleeData weaponMeleeData)
+        //public ItemSlotContainer _GetItemActive // get the slot container active equiped
         //{
-        //    for (int i = 0; i < _ItemSlotContainerList.Count; i++)
+        //    get
         //    {
-        //        ItemSlotContainer container = _ItemSlotContainerList[i];
-        //        if (weaponMeleeData == container._WeaponMeleeData && container._HasHeldItem)
+        //        foreach (ItemSlotContainer c in _ItemSlotContainerList)
         //        {
-        //            _ItemSlotContainerList[i]._WeaponMeleeData = null;
-        //            _ItemSlotContainerList[i]._ItemImage.sprite = null;
-        //            _ItemSlotContainerList[i]._HasHeldItem = false;
+        //            if (c._ItemSetActive)
+        //            {
+        //                return c;
+        //            }
         //        }
+        //        return null;
         //    }
         //}
+
+        public void _UpdateSlotContainer()
+        {
+            ItemSlotContainer container = _ActivatedItemSlotContainer;
+            container._WeaponMeleeData = null;
+            container._ItemImage.sprite = null;
+            container._HasHeldItem = false;
+            container._ItemObjectPrefab = null;
+
+            //for (int i = 0; i < _ItemSlotContainerList.Count; i++)
+            //{
+            //    ItemSlotContainer container = _ItemSlotContainerList[i];
+            //    if (weaponMeleeData == container._WeaponMeleeData && container._HasHeldItem)
+            //    {
+            //        _ItemSlotContainerList[i]._WeaponMeleeData = null;
+            //        _ItemSlotContainerList[i]._ItemImage.sprite = null;
+            //        _ItemSlotContainerList[i]._HasHeldItem = false;
+            //    }
+            //}
+        }
     }
 }
