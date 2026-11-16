@@ -25,6 +25,22 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &-8040193769196793715
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a704e3613f3eb414ca7be3f83edb01ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Data:
+  - {fileID: 11400000, guid: 5a0081436b0b15d4ba82958c9716fb0e, type: 2}
+  - {fileID: 11400000, guid: d35fff66fccb1b54fa0f20f3c40ec00e, type: 2}
+  controller: {fileID: 0}
 --- !u!1102 &-7131554264505002824
 AnimatorState:
   serializedVersion: 6
@@ -112,6 +128,7 @@ AnimatorState:
   - {fileID: 5255387067876200431}
   - {fileID: -4335212155918744497}
   - {fileID: 3110502933852187405}
+  - {fileID: -3864480067163577728}
   m_StateMachineBehaviours:
   - {fileID: -2064583005042419841}
   m_Position: {x: 50, y: 50, z: 0}
@@ -138,7 +155,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsGrabbingWeapon
+    m_ConditionEvent: IsGrabbingItem
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2092399587620576890}
@@ -238,6 +255,31 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1101 &-3864480067163577728
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: SetArmed
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 7757617856980970983}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.108107924
+  m_TransitionOffset: 0
+  m_ExitTime: 0.9744519
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!114 &-2502851109294290903
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -288,7 +330,8 @@ AnimatorState:
   m_Name: Pick up
   m_Speed: 4
   m_CycleOffset: 0
-  m_Transitions: []
+  m_Transitions:
+  - {fileID: 4975307962298387631}
   m_StateMachineBehaviours:
   - {fileID: 1565982569616276625}
   m_Position: {x: 50, y: 50, z: 0}
@@ -323,6 +366,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9375f890719cfe241baf1a052717c3b1, type: 2}
   - {fileID: 11400000, guid: d73c920c62f29bb4d825577733726818, type: 2}
   - {fileID: 11400000, guid: 61b4bd5954c3d7a4fbbab4948c3cae11, type: 2}
+  - {fileID: 11400000, guid: bcf7abfaa0da4d04eb7fdb6a92c5b100, type: 2}
   controller: {fileID: 0}
 --- !u!1102 &-1339889734531326413
 AnimatorState:
@@ -501,7 +545,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: IsGrabbingWeapon
+  - m_Name: IsGrabbingItem
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -515,6 +559,12 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: TransitionIndex
     m_Type: 3
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: SetArmed
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -621,8 +671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Data:
-  - {fileID: 11400000, guid: d35fff66fccb1b54fa0f20f3c40ec00e, type: 2}
-  - {fileID: 11400000, guid: 5a0081436b0b15d4ba82958c9716fb0e, type: 2}
+  - {fileID: 11400000, guid: f8034521fd5ab2040a00fe761007129a, type: 2}
   controller: {fileID: 0}
 --- !u!114 &1634796124610513184
 MonoBehaviour:
@@ -831,6 +880,28 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1101 &4975307962298387631
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -4662619516836812864}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.16743863
+  m_TransitionOffset: 0
+  m_ExitTime: 0.93553734
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!114 &5210874340666440915
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -968,6 +1039,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -7131554264505002824}
     m_Position: {x: 120, y: 540, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 7757617856980970983}
+    m_Position: {x: -370, y: 420, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -978,6 +1052,34 @@ AnimatorStateMachine:
   m_ExitPosition: {x: -600, y: -140, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -4662619516836812864}
+--- !u!1102 &7757617856980970983
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Unarmed Equip Underarm
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours:
+  - {fileID: -8040193769196793715}
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 1
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: -203655887218126122, guid: f208997475c10a04884232d108b72a21,
+    type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!114 &7832758974918145857
 MonoBehaviour:
   m_ObjectHideFlags: 1
