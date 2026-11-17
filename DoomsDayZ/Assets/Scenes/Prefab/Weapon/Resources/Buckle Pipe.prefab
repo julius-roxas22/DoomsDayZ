@@ -340,7 +340,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3080439095699910103
 Transform:
   m_ObjectHideFlags: 0
@@ -384,8 +384,8 @@ MonoBehaviour:
   _EnabledStucked: 1
   _IsThrowing: 0
   _XForce: 0
-  _YForce: 200
-  _ZForce: 1300
+  _YForce: 150
+  _ZForce: 3500
   _WeaponMeleeData: {fileID: 11400000, guid: fa87f75efb3b20e48a462fabc48d062a, type: 2}
   reachedEndDistanceForce: 250
   startPointPosition: {x: -4.220172, y: 2.0511777, z: -0.27363077}

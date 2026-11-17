@@ -703,8 +703,8 @@ MonoBehaviour:
   _EnabledStucked: 1
   _IsThrowing: 0
   _XForce: 0
-  _YForce: 200
-  _ZForce: 1300
+  _YForce: 150
+  _ZForce: 3500
   _WeaponMeleeData: {fileID: 11400000, guid: 7cf6a8103ceef3846a7d6b6a42d328bc, type: 2}
   reachedEndDistanceForce: 250
   startPointPosition: {x: -4.220172, y: 2.0511777, z: -0.27363077}

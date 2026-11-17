@@ -57,14 +57,21 @@ namespace IndieGameCharacterControllerSystem
             if (_IsRagdollTriggerd)
             {
                 _TurnRagdoll();
-                //if there is something stuck weapon on the character body part; weapon should be parent as null not to remove also
-                StartCoroutine(_Character._IEvanishDeadBody(durationToVanished));//just to vanish dead body after a few seconds ;)
                 _IsRagdollTriggerd = false;
+
+                //if there is something stuck weapon on the character body part; weapon should be parent as null not to remove also
+                //just to vanish dead body after a few seconds ;)
+                StartCoroutine(_Character._IEvanishDeadBody(durationToVanished));
             }
         }
 
         public void _TurnRagdoll()
         {
+            _Animator.Update(0f);
+            Physics.SyncTransforms();
+            transform.position += Vector3.up * 0.01f;
+            Physics.SyncTransforms();
+
             _Animator.enabled = false;
             _RigidBody.isKinematic = true;
             _RigidBody.useGravity = false;
@@ -111,12 +118,10 @@ namespace IndieGameCharacterControllerSystem
 
             Vector3 impactDamage = _Attacker.transform.TransformDirection(_DirectionDamageImpact);
             triggerBody.AddForce(impactDamage);
+            //triggerBody.AddForceAtPosition(impactDamage, _Attacker.transform.forward, ForceMode.Impulse);
 
             if (_Character._IsEquiped) //check if already carrying weapon
             {
-                //List<GameObject> weaponList = WeaponManager.GetInstance._GetWeaponList(_Character); // get the weapon system
-                //if (weaponList.Count > 0)
-                //{
                 _Character._IsEquiped = false;
                 WeaponMelee projectile = _Character._WeaponOnHand.GetComponent<WeaponMelee>(); // get the first weapon
                 projectile.transform.parent = null; // set the weapon parent position into null, so that the weapon is detached from character player
@@ -124,8 +129,7 @@ namespace IndieGameCharacterControllerSystem
                 projectile._RigidBody.isKinematic = false;//to avoid floating
                 projectile._BoxCollider.isTrigger = false;//to keep collide with other object
                 _Character._WeaponOnHand = null;
-                //weaponList.RemoveAt(0);// remove the first weapon
-                //}
+
                 //just to remove the weapon into ragdoll parts and set the weapon layer to weapon layer
                 Collider weaponCollider = _RagdollParts[_RagdollParts.Count - 1];
                 weaponCollider.gameObject.layer = LayerMask.NameToLayer("Weapon");

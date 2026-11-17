@@ -22,7 +22,7 @@ namespace IndieGameInventorySystem
         private AudioProgress progress;
         private AudioSource throwSource;
         private AudioSource collidedSource;
- //       private WeaponMeleeData weaponMeleedata;
+        //       private WeaponMeleeData weaponMeleedata;
         private int throwDamage;
 
         public override void Awake()
@@ -123,7 +123,6 @@ namespace IndieGameInventorySystem
                 transform.parent = collidedPart.transform;
                 transform.localPosition = collidedPart.transform.localPosition + piercePosition;
                 transform.localRotation = Quaternion.LookRotation(_Attacker.transform.right);
-                //    ownerTriggered._CharacterRagdoll.setupRagdollParts(); // re set the character ragdoll parts when the weapon stucked on the limbs
             }
             else
             {
@@ -134,7 +133,7 @@ namespace IndieGameInventorySystem
             ownerTriggered._HealthSystem._WeaponProjectileStuck = gameObject;// just to add into weapon stuck projectile; just to add a fail safe when dead body vanished
             isCollided = true;
             _IsThrowing = false;
-            throwDamage = Random.Range(_WeaponMeleeData._Damage, _WeaponMeleeData._Damage + 20);
+            throwDamage = /*Random.Range(_WeaponMeleeData._Damage, _WeaponMeleeData._Damage + 20);*/100;
             ownerTriggered._DamageDetector._TakeDamage(new Vector3(_XForce, _YForce, _ZForce), _Attacker, col, throwDamage);
 
             //put the audio source here

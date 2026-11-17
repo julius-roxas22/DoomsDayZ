@@ -48,6 +48,7 @@ namespace IndieGameUISystem
             weaponObject.transform.localPosition = Vector3.zero;
             weaponObject.transform.localRotation = Quaternion.identity;
             weaponObject.SetActive(true);
+            weaponMelee._ResetWeaponData();
             weaponObject.GetComponent<BoxCollider>().enabled = true;
 
             character._IsEquiped = isEquip;
@@ -66,6 +67,7 @@ namespace IndieGameUISystem
             weaponObject.transform.localPosition = Vector3.zero;
             weaponObject.transform.localRotation = Quaternion.identity;
             weaponObject.SetActive(true);
+            weaponMelee._ResetWeaponData();
             weaponObject.GetComponent<BoxCollider>().enabled = true;
 
             character._CharacterRagdoll._SetupRagdollParts();

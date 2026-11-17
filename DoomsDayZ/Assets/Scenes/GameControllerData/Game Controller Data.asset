@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76566be9d073993439f5a3635ef5790c, type: 3}
   m_Name: Game Controller Data
   m_EditorClassIdentifier: 
-  _CharacterIndex: 2
+  _CharacterIndex: 0
   _CharacterName: Lewis
   _CharacterAllyType: 0
   _CharacterCameraNameType: 1

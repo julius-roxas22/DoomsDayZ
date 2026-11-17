@@ -53,6 +53,8 @@ namespace IndieGameCharacterControllerSystem
 
         private void Awake()
         {
+            //Time.timeScale = 0.4f;
+
             _Animator = GetComponentInChildren<Animator>();
             _RigidBody = GetComponent<Rigidbody>();
             _Controller = GetComponent<Controller>();
@@ -69,6 +71,7 @@ namespace IndieGameCharacterControllerSystem
 
             _HealthSystem = GetComponent<HealthSystem>();
             CharacterManager.GetInstance._AddCharacterList(this);
+
         }
 
         private void Update()

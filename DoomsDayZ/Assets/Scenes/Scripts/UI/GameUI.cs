@@ -17,14 +17,6 @@ namespace IndieGameUISystem
         public GameController _GameController;
         public List<CanvasContainerBase> _CanvasContainerList = new List<CanvasContainerBase>();
 
-        //some tester of scriptable object
-        #region tester scriptable object
-        //[SerializeField] private WeaponScriptableTester tester;
-        //[SerializeField] private WeaponTesterData testerData;
-        //[SerializeField] private WeaponAttributes attributes;
-        private WeaponMelee weaponMelee;
-        #endregion
-
         private bool menuPanel;
         [SerializeField] private GameObject menuPanelObject;
 
@@ -34,8 +26,6 @@ namespace IndieGameUISystem
             {
                 menuPanelObject.SetActive(false);
             }
-
-            Time.timeScale = 0.2f;
         }
 
         private void Start()
@@ -48,17 +38,17 @@ namespace IndieGameUISystem
             }
         }
 
-        private void Update()
-        {
-            if (VirtualInputManager.GetInstance._IsPressedESC)
-            {
-                menuPanel = !menuPanel;
-                menuPanelObject.SetActive(menuPanel);
-            }
+        //private void Update()
+        //{
+        //    if (VirtualInputManager.GetInstance._IsPressedESC)
+        //    {
+        //        menuPanel = !menuPanel;
+        //        menuPanelObject.SetActive(menuPanel);
+        //    }
 
-            //check if the game is paused
-            Time.timeScale = menuPanelObject.activeInHierarchy ? 0 : 1;
-        }
+        //    //check if the game is paused
+        //    Time.timeScale = menuPanelObject.activeInHierarchy ? 0 : 1;
+        //}
 
         public void _AddDicCanvasContainer(CanvasContainerBase container)
         {
