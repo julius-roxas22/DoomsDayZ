@@ -121,10 +121,11 @@ namespace IndieGameNpcSystem
 
                 if (null != character._CharacterRagdoll)
                 {
-                    character._CharacterRagdoll._Attacker = selfController;
-                    Vector3 impact = (character.transform.position - transform.position).normalized * explosionImpact;
-                    character._CharacterRagdoll._DirectionDamageImpact = -impact;
-                    character._CharacterRagdoll._TriggerPart = findLowerBodyPart(character);
+                    //character._CharacterRagdoll._Attacker = selfController;
+                    //Vector3 impact = (character.transform.position - transform.position).normalized * explosionImpact;
+                    //character._CharacterRagdoll._DirectionDamageImpact = -impact;
+                    //character._CharacterRagdoll._TriggerPart = findLowerBodyPart(character);
+                    //Debug.Log("Take Damage " + character.name);
                 }
 
                 if (null != character._DamageDetector)

@@ -4001,7 +4001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4292519174238974944
 Transform:
   m_ObjectHideFlags: 0
@@ -5221,7 +5221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _CollidingParts: []
-  _BodyPartName: 0
+  _BodyPartName: 1
 --- !u!136 &1499316441710261181
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5337,7 +5337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _CollidingParts: []
-  _BodyPartName: 0
+  _BodyPartName: 3
 --- !u!136 &5460789770703223828
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5567,7 +5567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _CollidingParts: []
-  _BodyPartName: 0
+  _BodyPartName: 2
 --- !u!136 &3538590711460601348
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6217,7 +6217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _CollidingParts: []
-  _BodyPartName: 0
+  _BodyPartName: 2
 --- !u!1 &7662870476588055188 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3135921509060577837, guid: 502ea0d953c85d84aac715da090267e4,
@@ -6237,7 +6237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _CollidingParts: []
-  _BodyPartName: 0
+  _BodyPartName: 3
 --- !u!136 &6318319463701588952
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6353,7 +6353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _CollidingParts: []
-  _BodyPartName: 0
+  _BodyPartName: 1
 --- !u!136 &3018978589867910471
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6469,7 +6469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _CollidingParts: []
-  _BodyPartName: 0
+  _BodyPartName: 2
 --- !u!136 &8028441633486580141
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6679,7 +6679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _CollidingParts: []
-  _BodyPartName: 0
+  _BodyPartName: 2
 --- !u!1001 &8195148431555380303
 PrefabInstance:
   m_ObjectHideFlags: 0
