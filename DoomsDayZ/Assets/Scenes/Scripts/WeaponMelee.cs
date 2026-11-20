@@ -133,7 +133,7 @@ namespace IndieGameInventorySystem
             ownerTriggered._HealthSystem._WeaponProjectileStuck = gameObject;// just to add into weapon stuck projectile; just to add a fail safe when dead body vanished
             isCollided = true;
             _IsThrowing = false;
-            throwDamage = /*Random.Range(_WeaponMeleeData._Damage, _WeaponMeleeData._Damage + 20);*/100;
+            throwDamage = Random.Range(_WeaponMeleeData._Damage, _WeaponMeleeData._Damage + 20);
             ownerTriggered._DamageDetector._TakeDamage(new Vector3(_XForce, _YForce, _ZForce), _Attacker, col, throwDamage);
 
             //put the audio source here

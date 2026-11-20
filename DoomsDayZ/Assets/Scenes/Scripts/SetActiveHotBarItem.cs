@@ -79,6 +79,7 @@ namespace IndieGameAnimationStateData
                     return;
                 }
 
+                hotBar._SetSlotActiveDefault();
                 isAnimateTranstion = true;
                 animator.SetBool(_ETransitionParameters.SetArmed.ToString(), isAnimateTranstion);//automatically turn off when switch animator
             }

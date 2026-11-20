@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1aee1b7a2fc574d98a68fcd1e9cb44, type: 3}
   m_Name: OrtizNpcArgonizingExplode
   m_EditorClassIdentifier: 
-  explodeTiming: 0.2
+  explodeTiming: 0.09

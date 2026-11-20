@@ -82,8 +82,14 @@ namespace IndieGameAnimationStateData
             PlayerVault playerVault = GameManager.GetInstance._GetPlayerVault();
             ItemHotBarContainer hotBar = GameManager.GetInstance._GetItemHotbarContainer();
 
-            GameObject weaponDataObject = playerVault._GetItemByData(hotBar._ActivatedItemSlotContainer._WeaponMeleeData);
-            playerVault._SetWeaponPosition(true, character, weaponDataObject, bodyPartName);
+            if (null != hotBar._ActivatedItemSlotContainer)
+            {
+                GameObject weaponDataObject = playerVault._GetItemByData(hotBar._ActivatedItemSlotContainer._WeaponMeleeData);
+                if (null != weaponDataObject)
+                {
+                    playerVault._SetWeaponPosition(true, character, weaponDataObject, bodyPartName);
+                }
+            }
         }
     }
 }

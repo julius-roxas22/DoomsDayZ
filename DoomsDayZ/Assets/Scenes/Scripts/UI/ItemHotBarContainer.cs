@@ -35,24 +35,27 @@ namespace IndieGameUISystem
         {
             ItemSlotContainer container = _ItemSlotContainerList[_SlotIndex];
             _ActivatedItemSlotContainer = container;
-
             if (container._HasHeldItem)
             {
                 if (null == firstItemSlot && null == lastItemSlot)
                 {
                     firstItemSlot = container;
                     lastItemSlot = container;
+                    container._ItemActiveHightLight.gameObject.SetActive(true);
                 }
                 else
                 {
                     lastItemSlot = firstItemSlot;
                     firstItemSlot = container;
+                    lastItemSlot._ItemActiveHightLight.gameObject.SetActive(false);
+                    firstItemSlot._ItemActiveHightLight.gameObject.SetActive(true);
                 }
                 return true;
             }
             return false;
         }
 
+        //switching item without animation happens
         public void _SwitchItem(Character character)
         {
             if (_SlotIndex == -2) return;
@@ -60,26 +63,13 @@ namespace IndieGameUISystem
             //set those position and transform
             //last item slot goes to player vault
             //first item slot goes to player
-
             GameObject first = firstItemSlot._ItemObjectPrefab;
             GameObject last = lastItemSlot._ItemObjectPrefab;
 
             PlayerVault playerVault = GameManager.GetInstance._GetPlayerVault();
             playerVault._SetAsChildPosition(last);
             playerVault._SetWeaponPosition(character, first, "WeaponSlot");
-            //Transform parentTransform = character._BodyPartTransform("WeaponSlot");
-            //WeaponMelee weaponMelee = first.GetComponent<WeaponMelee>();
-            //parentTransform.localPosition = weaponMelee._WeaponMeleeData._Position;
-            //parentTransform.localRotation = Quaternion.Euler(weaponMelee._WeaponMeleeData._Rotations);
-            //first.transform.parent = parentTransform;
-            //first.transform.localPosition = Vector3.zero;
-            //first.transform.localRotation = Quaternion.identity;
-            //first.SetActive(true);
-            //first.GetComponent<BoxCollider>().enabled = true;
-            //character._CharacterRagdoll._SetupRagdollParts();
-            //Destroy(first.GetComponent<Rigidbody>());
-
-            _SlotIndex = -2;
+            _SlotIndex = -2;//back to default index of hot bar slot
         }
 
         public void _SetItemHeld(GameObject obj) //when pick up the item it will add in weapon manager
@@ -108,20 +98,11 @@ namespace IndieGameUISystem
             }
         }
 
-        //public ItemSlotContainer _GetItemActive // get the slot container active equiped
-        //{
-        //    get
-        //    {
-        //        foreach (ItemSlotContainer c in _ItemSlotContainerList)
-        //        {
-        //            if (c._ItemSetActive)
-        //            {
-        //                return c;
-        //            }
-        //        }
-        //        return null;
-        //    }
-        //}
+        public void _SetSlotActiveDefault()
+        {
+            _ActivatedItemSlotContainer._ItemActiveHightLight.gameObject.SetActive(false);
+            _ActivatedItemSlotContainer = null;
+        }
 
         public void _UpdateSlotContainer()
         {
@@ -130,17 +111,7 @@ namespace IndieGameUISystem
             container._ItemImage.sprite = null;
             container._HasHeldItem = false;
             container._ItemObjectPrefab = null;
-
-            //for (int i = 0; i < _ItemSlotContainerList.Count; i++)
-            //{
-            //    ItemSlotContainer container = _ItemSlotContainerList[i];
-            //    if (weaponMeleeData == container._WeaponMeleeData && container._HasHeldItem)
-            //    {
-            //        _ItemSlotContainerList[i]._WeaponMeleeData = null;
-            //        _ItemSlotContainerList[i]._ItemImage.sprite = null;
-            //        _ItemSlotContainerList[i]._HasHeldItem = false;
-            //    }
-            //}
+            container._ItemActiveHightLight.gameObject.SetActive(false);
         }
     }
 }
