@@ -98,8 +98,9 @@ namespace IndieGameUISystem
             }
         }
 
-        public void _SetSlotActiveDefault()
+        public void _SetSlotActiveDefault(Character character)
         {
+            character._WeaponOnHand = null;
             _ActivatedItemSlotContainer._ItemActiveHightLight.gameObject.SetActive(false);
             _ActivatedItemSlotContainer = null;
         }

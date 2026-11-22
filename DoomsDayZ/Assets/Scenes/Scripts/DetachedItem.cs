@@ -83,17 +83,15 @@ namespace IndieGameAnimationStateData
         private void detachWeapon(Character character)
         {
             PlayerVault playerVault = GameManager.GetInstance._GetPlayerVault();
+
+            if (null == character._WeaponOnHand)
+            {
+                return;
+            }
+
             WeaponMeleeData weaponMeleeData = character._WeaponOnHand.GetComponent<WeaponMelee>()._WeaponMeleeData;
             GameObject weaponObject = playerVault._GetItemByData(weaponMeleeData);
 
-            //List<GameObject> weaponList = WeaponManager.GetInstance._GetWeaponList(character); // get the weapon list of the specific character
-
-            //if (weaponList.Count == 0)
-            //{
-            //    return;
-            //}
-
-            //GameObject weapon = weaponList[0];
             WeaponMelee weaponMelee = weaponObject.GetComponent<WeaponMelee>();
             weaponObject.transform.parent = null;
             character._CharacterRagdoll._SetupRagdollParts(); // reset the character ragdoll parts to detect the collision of every attack
@@ -102,6 +100,7 @@ namespace IndieGameAnimationStateData
             playerVault._Items.Remove(weaponObject);
             Destroy(weaponObject.GetComponent<TriggerDetector>());
             weaponMelee._RigidBody = weaponObject.AddComponent<Rigidbody>();
+            character._WeaponOnHand = null;
 
             if (!throwable) // just to drop infront of the character
             {
