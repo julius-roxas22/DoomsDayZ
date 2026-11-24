@@ -131,7 +131,12 @@ namespace IndieGameHealthSystem
 
             if (character._IsEquiped)
             {
-                float weaponHandling = WeaponManager.GetInstance._GetWeaponList(character)[0].GetComponent<WeaponMelee>()._WeaponMeleeData._WeaponHandling;
+                // float weaponHandling = WeaponManager.GetInstance._GetWeaponList(character)[0].GetComponent<WeaponMelee>()._WeaponMeleeData._WeaponHandling;
+
+                float weaponHandling = GameManager.GetInstance._GetPlayerVault()
+                    ._GetItemByWeapon(character._WeaponOnHand)
+                    .GetComponent<WeaponMelee>()
+                    ._WeaponMeleeData._WeaponHandling;
 
                 if (healthSystem._DefenseData._CurrentStamina > weaponHandling)
                 {

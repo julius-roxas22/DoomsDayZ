@@ -36,7 +36,8 @@ namespace IndieGameAnimationStateData
             if (itemsDetects.Count > 0)//for now, its just a weapon
             {
                 int rand = Random.Range(0, itemsDetects.Count - 1);
-                WeaponManager.GetInstance._AddWeapon(character, itemsDetects[rand].gameObject);
+                GameManager.GetInstance._GetPlayerVault()._AddItems(itemsDetects[rand].gameObject);
+                //WeaponManager.GetInstance._AddWeapon(character, itemsDetects[rand].gameObject);
             }
         }
 

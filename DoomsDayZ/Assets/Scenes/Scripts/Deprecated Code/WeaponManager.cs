@@ -6,6 +6,7 @@ using IndieGameUISystem;
 
 namespace IndieGameManagersSystem
 {
+    [System.Obsolete("Deprecated Code", true)]
     public class WeaponManager : Singleton<WeaponManager>
     {
         private Dictionary<Character, List<GameObject>> dictionaryWeaponList = new Dictionary<Character, List<GameObject>>();
@@ -44,6 +45,7 @@ namespace IndieGameManagersSystem
             GameManager.GetInstance._GetItemHotbarContainer()._SetItemHeld(weapon);
         }
 
+        //TODO: bug here
         public void _RemoveWeapon(Character c, GameObject weapon)
         {
             if (!dictionaryWeaponList.ContainsKey(c))
@@ -57,7 +59,8 @@ namespace IndieGameManagersSystem
             {
                 weaponList.Remove(weapon);
             }
-            GameManager.GetInstance._GetItemHotbarContainer()._UpdateSlotContainer();
+            GameManager.GetInstance._GetPlayerVault()._RemoveItems(weapon);
+            GameManager.GetInstance._GetItemHotbarContainer()._ResetSlotContainer();
         }
 
         public List<GameObject> _GetWeaponList(Character c)

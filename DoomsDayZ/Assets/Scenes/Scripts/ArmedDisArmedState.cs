@@ -63,7 +63,8 @@ namespace IndieGameAnimationStateData
             {
                 int rand = Random.Range(0, itemsDetects.Count - 1);
                 GameObject obj = itemsDetects[rand].gameObject;
-                WeaponManager.GetInstance._AddWeapon(character, obj);
+                //WeaponManager.GetInstance._AddWeapon(character, obj);
+                GameManager.GetInstance._GetPlayerVault()._AddItems(obj);
                 playerVault._SetAsChildPosition(obj);
             }
         }

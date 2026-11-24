@@ -10,9 +10,10 @@ namespace IndieGameAnimationStateData
     [CreateAssetMenu(fileName = "New Ability", menuName = "IndieGamePractice/Ability/SwitchAnimator")]
     public class SwitchAnimator : BaseStateData
     {
-        //[SerializeField] private RuntimeAnimatorController _NewSwitchedAnimatorController;
-        [SerializeField] private List<RuntimeAnimatorController> _NewRunAnimControllers;
+        [SerializeField] private RuntimeAnimatorController switchAnimatorController;
+        // [SerializeField] private List<RuntimeAnimatorController> _NewRunAnimControllers;
         [SerializeField] private float switchTiming;
+        private bool isSwitched;
 
         public override void OnEnterAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
@@ -25,26 +26,33 @@ namespace IndieGameAnimationStateData
             {
                 character._Controller._IsJumped = false;
             }
+
+            isSwitched = false;
         }
 
         public override void OnUpdateAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
-            if (stateInfo.normalizedTime >= switchTiming)
+            if (stateInfo.normalizedTime >= switchTiming && !isSwitched)
             {
-                if (_NewRunAnimControllers.Count > 1)
-                {
-                    switchTo(character);
-                }
-                else
-                {
-                    character._Animator.runtimeAnimatorController = _NewRunAnimControllers[0];//switch into one armed weapon
-                }
+                // switchTo(character);
+
+                character._Animator.runtimeAnimatorController = switchAnimatorController;//switch into one armed weapon
+                isSwitched = true;
+
+                //if (_NewRunAnimControllers.Count > 1)
+                //{
+                //    switchTo(character);
+                //}
+                //else
+                //{
+                //    character._Animator.runtimeAnimatorController = _NewRunAnimControllers[0];//switch into one armed weapon
+                //}
             }
         }
 
         public override void OnExitAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
-
+            isSwitched = false;
         }
 
         private bool checkHeavyWeapon(string name)
@@ -60,17 +68,19 @@ namespace IndieGameAnimationStateData
         {
             if (character._IsEquiped)
             {
-                GameObject weapon = WeaponManager.GetInstance._GetWeaponList(character)[0];
-                if (!checkHeavyWeapon(weapon.name))
-                {
-                    //change to deault melee run animator
-                    character._Animator.runtimeAnimatorController = _NewRunAnimControllers[0]; // one hand animator
-                }
-                else
-                {
-                    //change to heavy run animator
-                    character._Animator.runtimeAnimatorController = _NewRunAnimControllers[1]; // two hand animator
-                }
+                character._Animator.runtimeAnimatorController = /*_NewRunAnimControllers[0]*/ switchAnimatorController; // one hand animator
+
+                //GameObject weapon = WeaponManager.GetInstance._GetWeaponList(character)[0];
+                //if (!checkHeavyWeapon(weapon.name))
+                //{
+                //    //change to deault melee run animator
+                //    character._Animator.runtimeAnimatorController = _NewRunAnimControllers[0]; // one hand animator
+                //}
+                //else
+                //{
+                //    //change to heavy run animator
+                //    character._Animator.runtimeAnimatorController = _NewRunAnimControllers[1]; // two hand animator
+                //}
             }
         }
     }

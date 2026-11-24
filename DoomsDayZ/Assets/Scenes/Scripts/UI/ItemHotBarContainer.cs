@@ -72,7 +72,7 @@ namespace IndieGameUISystem
             _SlotIndex = -2;//back to default index of hot bar slot
         }
 
-        public void _SetItemHeld(GameObject obj) //when pick up the item it will add in weapon manager
+        public void _SetItemHeld(GameObject obj)
         {
             ItemSlotContainer container = getSlotContainerHasntHeldItem;
             WeaponMelee melee = obj.GetComponent<WeaponMelee>();
@@ -105,7 +105,22 @@ namespace IndieGameUISystem
             _ActivatedItemSlotContainer = null;
         }
 
-        public void _UpdateSlotContainer()
+        public void _UpdateSlotContainer(GameObject item)
+        {
+            foreach (ItemSlotContainer slot in _ItemSlotContainerList)
+            {
+                if (slot._ItemObjectPrefab == item && slot._HasHeldItem)
+                {
+                    slot._WeaponMeleeData = null;
+                    slot._ItemImage.sprite = null;
+                    slot._HasHeldItem = false;
+                    slot._ItemObjectPrefab = null;
+                    slot._ItemActiveHightLight.gameObject.SetActive(false);
+                }
+            }
+        }
+
+        public void _ResetSlotContainer()
         {
             ItemSlotContainer container = _ActivatedItemSlotContainer;
             container._WeaponMeleeData = null;

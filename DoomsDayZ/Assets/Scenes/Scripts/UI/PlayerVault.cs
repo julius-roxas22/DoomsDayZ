@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using IndieGameCharacterControllerSystem;
 using IndieGameInventorySystem;
+using IndieGameManagersSystem;
 
 namespace IndieGameUISystem
 {
@@ -10,6 +11,15 @@ namespace IndieGameUISystem
     {
         public Character _Owner;
         public List<GameObject> _Items = new List<GameObject>();
+
+        public void _AddItems(GameObject obj)
+        {
+            if (!_Items.Contains(obj))
+            {
+                _Items.Add(obj);
+                GameManager.GetInstance._GetItemHotbarContainer()._SetItemHeld(obj);
+            }
+        }
 
         public void _RemoveItems(GameObject item)
         {
@@ -20,6 +30,20 @@ namespace IndieGameUISystem
                     _Items.RemoveAt(i);
                 }
             }
+
+            GameManager.GetInstance._GetItemHotbarContainer()._UpdateSlotContainer(item);
+        }
+
+        public GameObject _GetItemByWeapon(GameObject obj)
+        {
+            foreach (GameObject o in _Items)
+            {
+                if (o == obj)
+                {
+                    return o;
+                }
+            }
+            return null;
         }
 
         //just temporary searching by weapon items only

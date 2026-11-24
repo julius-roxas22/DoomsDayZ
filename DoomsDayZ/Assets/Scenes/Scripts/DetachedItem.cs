@@ -76,7 +76,8 @@ namespace IndieGameAnimationStateData
             procjectile._IsThrowing = true;
             procjectile._MoveDirection = character._NPCBase._DetectedTarget.transform.position;// direction of the heavy object when its deploy
             procjectile._TriggeredEnable(); // timing to enable trigger
-            WeaponManager.GetInstance._RemoveWeapon(character, procjectile.gameObject); // just to clear in the list
+                                            // GameManager.GetInstance._GetPlayerVault()._RemoveItems();
+                                            // WeaponManager.GetInstance._RemoveWeapon(character, procjectile.gameObject); // just to clear in the list
             character._NPCBase._Weapon = null;
         }
 
@@ -96,8 +97,9 @@ namespace IndieGameAnimationStateData
             weaponObject.transform.parent = null;
             character._CharacterRagdoll._SetupRagdollParts(); // reset the character ragdoll parts to detect the collision of every attack
             character._IsEquiped = false; // set the character to un equip
-            WeaponManager.GetInstance._RemoveWeapon(character, weaponObject); // remove from the weapon list of specific character
-            playerVault._Items.Remove(weaponObject);
+            //GameManager.GetInstance._RemoveWeapon(character, weaponObject); // remove from the weapon list of specific character
+            //playerVault._Items.Remove(weaponObject);
+            playerVault._RemoveItems(weaponObject);
             Destroy(weaponObject.GetComponent<TriggerDetector>());
             weaponMelee._RigidBody = weaponObject.AddComponent<Rigidbody>();
             character._WeaponOnHand = null;

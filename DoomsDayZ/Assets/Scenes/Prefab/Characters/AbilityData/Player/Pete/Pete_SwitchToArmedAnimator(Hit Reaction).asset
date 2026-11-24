@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04814d5485e47654496cdb38e2b0bebb, type: 3}
   m_Name: Pete_SwitchToArmedAnimator(Hit Reaction)
   m_EditorClassIdentifier: 
-  _NewRunAnimControllers:
-  - {fileID: 9100000, guid: 07451fa83dedc97419fef34176642f3f, type: 2}
-  - {fileID: 9100000, guid: 136147e2776cac647bd6008000f41cf2, type: 2}
+  switchAnimatorController: {fileID: 9100000, guid: 07451fa83dedc97419fef34176642f3f,
+    type: 2}
   switchTiming: 0.08
