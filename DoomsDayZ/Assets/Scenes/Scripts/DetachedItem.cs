@@ -91,7 +91,7 @@ namespace IndieGameAnimationStateData
             }
 
             WeaponMeleeData weaponMeleeData = character._WeaponOnHand.GetComponent<WeaponMelee>()._WeaponMeleeData;
-            GameObject weaponObject = playerVault._GetItemByData(weaponMeleeData);
+            GameObject weaponObject = playerVault._GetItemObjectByData(weaponMeleeData);
 
             WeaponMelee weaponMelee = weaponObject.GetComponent<WeaponMelee>();
             weaponObject.transform.parent = null;

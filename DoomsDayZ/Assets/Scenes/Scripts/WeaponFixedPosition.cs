@@ -20,24 +20,23 @@ namespace IndieGameAnimationStateData
         [SerializeField] private float zScale;
         private bool isAnimated;
 
+        private ItemHotBarContainer hotBar;
+
         public override void OnEnterAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
             isAnimated = false;
+
+            if (null == hotBar)
+            {
+                hotBar = GameManager.GetInstance._GetItemHotbarContainer();
+            }
+
             //add it into the weapon manager to handle it specific character with weapon list
             if (!character._SubController.enabled)
             {
                 character._NPCBase._Weapon = PoolProjectileManager.GetInstance._GetProjectile(character, _EProjectileType.Rock);
                 character._NPCBase._Weapon.SetActive(false);
                 return;
-            }
-
-            List<Collider> itemsDetects = character._VicinityDetector._VicinityDetects;
-
-            if (itemsDetects.Count > 0)//for now, its just a weapon
-            {
-                int rand = Random.Range(0, itemsDetects.Count - 1);
-                GameManager.GetInstance._GetPlayerVault()._AddItems(itemsDetects[rand].gameObject);
-                //WeaponManager.GetInstance._AddWeapon(character, itemsDetects[rand].gameObject);
             }
         }
 
@@ -81,11 +80,10 @@ namespace IndieGameAnimationStateData
         private void setWeaponPosition(Character character)
         {
             PlayerVault playerVault = GameManager.GetInstance._GetPlayerVault();
-            ItemHotBarContainer hotBar = GameManager.GetInstance._GetItemHotbarContainer();
 
             if (null != hotBar._ActivatedItemSlotContainer)
             {
-                GameObject weaponDataObject = playerVault._GetItemByData(hotBar._ActivatedItemSlotContainer._WeaponMeleeData);
+                GameObject weaponDataObject = playerVault._GetItemObjectByData(hotBar._ActivatedItemSlotContainer._WeaponMeleeData);
                 if (null != weaponDataObject)
                 {
                     playerVault._SetWeaponPosition(true, character, weaponDataObject, bodyPartName);

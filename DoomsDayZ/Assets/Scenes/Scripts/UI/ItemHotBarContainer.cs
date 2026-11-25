@@ -16,6 +16,16 @@ namespace IndieGameUISystem
         [SerializeField] private ItemSlotContainer firstItemSlot;
         [SerializeField] private ItemSlotContainer lastItemSlot;
 
+        private PlayerVault playerVault;
+
+        private void Awake()
+        {
+            if (null == playerVault)
+            {
+                playerVault = GameManager.GetInstance._GetPlayerVault();
+            }
+        }
+
         public bool _CheckItemSlotIsFull
         {
             get
@@ -66,7 +76,6 @@ namespace IndieGameUISystem
             GameObject first = firstItemSlot._ItemObjectPrefab;
             GameObject last = lastItemSlot._ItemObjectPrefab;
 
-            PlayerVault playerVault = GameManager.GetInstance._GetPlayerVault();
             playerVault._SetAsChildPosition(last);
             playerVault._SetWeaponPosition(character, first, "WeaponSlot");
             _SlotIndex = -2;//back to default index of hot bar slot

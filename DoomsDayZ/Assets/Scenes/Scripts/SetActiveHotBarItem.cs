@@ -52,15 +52,15 @@ namespace IndieGameAnimationStateData
                     return;
                 }
 
-                if (isAnimateTranstion)
-                {
-                    return;
-                }
+                //if (isAnimateTranstion)
+                //{
+                //    return;
+                //}
 
                 if (!character._IsEquiped)
                 {
                     isAnimateTranstion = true;
-                    animator.SetBool(_ETransitionParameters.SetArmed.ToString(), isAnimateTranstion);//automatically turn off when switch animator
+                    animator.SetBool(_ETransitionParameters.SetArmed.ToString(), isAnimateTranstion);
                 }
                 else
                 {
@@ -74,14 +74,14 @@ namespace IndieGameAnimationStateData
                     return;
                 }
 
-                if (isAnimateTranstion)
-                {
-                    return;
-                }
+                //if (isAnimateTranstion)
+                //{
+                //    return;
+                //}
 
                 hotBar._SetSlotActiveDefault(character);
                 isAnimateTranstion = true;
-                animator.SetBool(_ETransitionParameters.SetArmed.ToString(), isAnimateTranstion);//automatically turn off when switch animator
+                animator.SetBool(_ETransitionParameters.SetArmed.ToString(), isAnimateTranstion);
             }
         }
 

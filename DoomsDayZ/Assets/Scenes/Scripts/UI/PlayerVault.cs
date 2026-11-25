@@ -17,7 +17,7 @@ namespace IndieGameUISystem
             if (!_Items.Contains(obj))
             {
                 _Items.Add(obj);
-                GameManager.GetInstance._GetItemHotbarContainer()._SetItemHeld(obj);
+                GameManager.GetInstance._GetItemHotbarContainer()._SetItemHeld(obj);//set item hotbar visible
             }
         }
 
@@ -47,7 +47,7 @@ namespace IndieGameUISystem
         }
 
         //just temporary searching by weapon items only
-        public GameObject _GetItemByData(WeaponMeleeData weaponMeleeData)
+        public GameObject _GetItemObjectByData(WeaponMeleeData weaponMeleeData)
         {
             foreach (GameObject i in _Items)
             {
@@ -78,7 +78,7 @@ namespace IndieGameUISystem
             character._IsEquiped = isEquip;
             character._CharacterRagdoll._SetupRagdollParts();
             character._WeaponOnHand = weaponObject;
-            Destroy(weaponObject.GetComponent<Rigidbody>());
+            Destroy(weaponObject.GetComponent<Rigidbody>()); // to avoid conflict of the physics and gravity
         }
 
         public void _SetWeaponPosition(Character character, GameObject weaponObject, string bodyPartName)
@@ -96,7 +96,7 @@ namespace IndieGameUISystem
 
             character._CharacterRagdoll._SetupRagdollParts();
             character._WeaponOnHand = weaponObject;
-            Destroy(weaponObject.GetComponent<Rigidbody>());
+            Destroy(weaponObject.GetComponent<Rigidbody>()); // to avoid conflict of the physics and gravity
         }
 
         public void _SetAsChildPosition(GameObject obj)
