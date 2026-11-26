@@ -47,13 +47,11 @@ namespace IndieGameUISystem
         }
 
         //just temporary searching by weapon items only
-        public GameObject _GetItemObjectByData(WeaponMeleeData weaponMeleeData)
+        public GameObject _GetItemObject(GameObject item)
         {
             foreach (GameObject i in _Items)
             {
-                WeaponMeleeData data = i.GetComponent<WeaponMelee>()._WeaponMeleeData;
-
-                if (data == weaponMeleeData)
+                if (i == item)
                 {
                     return i;
                 }

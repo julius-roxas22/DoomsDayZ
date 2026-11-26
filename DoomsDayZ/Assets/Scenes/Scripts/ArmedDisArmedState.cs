@@ -58,14 +58,10 @@ namespace IndieGameAnimationStateData
         private void grab(Character character)
         {
             List<Collider> itemsDetects = character._VicinityDetector._VicinityDetects;
-
-            if (itemsDetects.Count > 0)//for now, its just a weapon
-            {
-                int rand = Random.Range(0, itemsDetects.Count - 1);
-                GameObject obj = itemsDetects[rand].gameObject;
-                GameManager.GetInstance._GetPlayerVault()._AddItems(obj);
-                playerVault._SetAsChildPosition(obj);
-            }
+            int rand = Random.Range(0, itemsDetects.Count - 1);
+            GameObject obj = itemsDetects[rand].gameObject;
+            GameManager.GetInstance._GetPlayerVault()._AddItems(obj);
+            playerVault._SetAsChildPosition(obj);
         }
 
         private void disArmWeapon(Character character)

@@ -109,9 +109,13 @@ namespace IndieGameUISystem
 
         public void _SetSlotActiveDefault(Character character)
         {
-            character._WeaponOnHand = null;
-            _ActivatedItemSlotContainer._ItemActiveHightLight.gameObject.SetActive(false);
-            _ActivatedItemSlotContainer = null;
+            if (null != character._WeaponOnHand && null != _ActivatedItemSlotContainer)
+            {
+                character._WeaponOnHand = null;
+                _ActivatedItemSlotContainer._ItemActiveHightLight.gameObject.SetActive(false);
+                _ActivatedItemSlotContainer = null;
+                _SlotIndex = -2;
+            }
         }
 
         public void _UpdateSlotContainer(GameObject item)

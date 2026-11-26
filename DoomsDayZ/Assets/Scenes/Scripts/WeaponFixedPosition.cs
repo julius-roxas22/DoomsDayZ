@@ -83,7 +83,7 @@ namespace IndieGameAnimationStateData
 
             if (null != hotBar._ActivatedItemSlotContainer)
             {
-                GameObject weaponDataObject = playerVault._GetItemObjectByData(hotBar._ActivatedItemSlotContainer._WeaponMeleeData);
+                GameObject weaponDataObject = playerVault._GetItemObject(hotBar._ActivatedItemSlotContainer._ItemObjectPrefab);
                 if (null != weaponDataObject)
                 {
                     playerVault._SetWeaponPosition(true, character, weaponDataObject, bodyPartName);

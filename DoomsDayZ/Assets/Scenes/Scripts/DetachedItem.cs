@@ -90,15 +90,11 @@ namespace IndieGameAnimationStateData
                 return;
             }
 
-            WeaponMeleeData weaponMeleeData = character._WeaponOnHand.GetComponent<WeaponMelee>()._WeaponMeleeData;
-            GameObject weaponObject = playerVault._GetItemObjectByData(weaponMeleeData);
-
+            GameObject weaponObject = playerVault._GetItemObject(character._WeaponOnHand);
             WeaponMelee weaponMelee = weaponObject.GetComponent<WeaponMelee>();
             weaponObject.transform.parent = null;
             character._CharacterRagdoll._SetupRagdollParts(); // reset the character ragdoll parts to detect the collision of every attack
             character._IsEquiped = false; // set the character to un equip
-            //GameManager.GetInstance._RemoveWeapon(character, weaponObject); // remove from the weapon list of specific character
-            //playerVault._Items.Remove(weaponObject);
             playerVault._RemoveItems(weaponObject);
             Destroy(weaponObject.GetComponent<TriggerDetector>());
             weaponMelee._RigidBody = weaponObject.AddComponent<Rigidbody>();
