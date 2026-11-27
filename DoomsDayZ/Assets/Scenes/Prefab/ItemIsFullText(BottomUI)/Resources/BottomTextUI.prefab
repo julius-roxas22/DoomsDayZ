@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7453909047044894212}
   - component: {fileID: 3326813667305460001}
+  - component: {fileID: 6304618007162765758}
   - component: {fileID: 1361330702911564057}
   - component: {fileID: 4577890797787009189}
   m_Layer: 5
-  m_Name: BottomText
+  m_Name: BottomTextUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,6 +47,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3996415359894374372}
   m_CullTransparentMesh: 1
+--- !u!114 &6304618007162765758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3996415359894374372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08a7df9a83163e4e94a29e27a6e2b84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ProcType: 2
 --- !u!114 &1361330702911564057
 MonoBehaviour:
   m_ObjectHideFlags: 0

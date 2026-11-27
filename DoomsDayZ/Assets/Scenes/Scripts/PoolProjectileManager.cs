@@ -62,7 +62,14 @@ namespace IndieGameManagersSystem
         //    poolObj.gameObject.SetActive(false);
         //}
         #endregion
-
+        //example format of pooling system
+        //character1:{
+        //          projectileAttackInfo:{
+        //                      Queues:{
+        //                              punch, melee_weapon, kick, throw_heavy_weapon
+        //                      }
+        //          }
+        //}
         private Dictionary<Character, Dictionary<_EProjectileType, Queue<GameObject>>> dicPoolProjectileTypes = new Dictionary<Character, Dictionary<_EProjectileType, Queue<GameObject>>>();
 
         private void setupPool(Character character)
@@ -105,8 +112,8 @@ namespace IndieGameManagersSystem
             return null;
         }
 
-        [System.Obsolete("Deprecated code" , true)]
-        public void _ReturnPool(AttackInfo info, _EProjectileType procType/*GameObject obj*/) //deprecated
+        [System.Obsolete("Deprecated code", true)]
+        public void _ReturnPool(AttackInfo info, _EProjectileType procType/*GameObject obj*/)
         {
             //AttackInfo info = obj.GetComponent<AttackInfo>();
             dicPoolProjectileTypes[info._Attacker][procType].Enqueue(info.gameObject);

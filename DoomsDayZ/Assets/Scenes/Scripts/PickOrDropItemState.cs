@@ -14,7 +14,7 @@ namespace IndieGameAnimationStateData
         private GameUI gameUI;
         public override void OnEnterAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
-            if(null == gameUI)
+            if (null == gameUI)
             {
                 gameUI = GameManager.GetInstance._GetGameUI();
             }
@@ -56,9 +56,16 @@ namespace IndieGameAnimationStateData
                 return;
             }
 
+
             if (GameManager.GetInstance._GetItemHotbarContainer()._IsItemSlotIsFull)
             {
-                //add some text ui in to the game
+                //TODO:: add some pool object maximum instantiate at least three or one
+                //TODO:: i dont want to instantiate every time press the key with item slot is full. it can cause the dropping frame rate
+                GameObject obj = PoolProjectileManager.GetInstance._GetProjectile(character, _EProjectileType.BottomTextUI);
+                obj.transform.parent = gameUI._BottomTextContainerObject.transform;
+                obj.transform.localPosition = Vector3.zero;
+                obj.transform.localRotation = Quaternion.identity;
+                Destroy(obj, 2f);
                 Debug.Log("Item slot is full");
                 return;
             }
