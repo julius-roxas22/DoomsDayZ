@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fb5e067bec2fd74993e1aa4091802dc, type: 3}
-  m_Name: General_PickOrDropWeapon (Drop)
+  m_Name: General_PickOrDropItemState
   m_EditorClassIdentifier: 
   weaponMask:
     serializedVersion: 2

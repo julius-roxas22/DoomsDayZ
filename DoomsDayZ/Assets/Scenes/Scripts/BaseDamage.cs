@@ -131,7 +131,7 @@ namespace IndieGameAnimationStateData
             {
                 if (_DicCurrentAttack.ContainsKey(character))
                 {
-                    PoolProjectileManager.GetInstance._ReturnPool(info, _ProjectileType);
+                    PoolProjectileManager.GetInstance._ReturnPool(/*info, _ProjectileType*/character, info.GetComponent<PoolObject>());
                     AttackManager.GetInstance._CurrentAttacks.Remove(info);
                 }
                 _DicCurrentAttack.Remove(character);

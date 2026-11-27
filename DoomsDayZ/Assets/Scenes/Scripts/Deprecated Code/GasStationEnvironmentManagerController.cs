@@ -6,7 +6,7 @@ using IndieGameInventorySystem;
 
 namespace IndieGameGameControllerSystem
 {
-
+    [System.Obsolete("Deprecated Code", true)]
     public class GasStationEnvironmentManagerController : Singleton<GasStationEnvironmentManagerController>
     {
         public List<WeaponMelee> _MeleeWeapons = new List<WeaponMelee>();

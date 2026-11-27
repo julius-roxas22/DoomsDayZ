@@ -9,21 +9,21 @@ namespace IndieGameAnimationStateData
 {
     //this state is check wether pick or drop the weapon
     [CreateAssetMenu(fileName = "New Ability", menuName = "IndieGamePractice/Ability/PickOrDropWeaponState")]
-    public class PickOrDropWeaponState : BaseStateData
+    public class PickOrDropItemState : BaseStateData
     {
-        [Space(10)]
-        [Header("Setup for Drop Weapon")]
-        [SerializeField] private bool onDropWeapon;
-
+        private GameUI gameUI;
         public override void OnEnterAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
-
+            if(null == gameUI)
+            {
+                gameUI = GameManager.GetInstance._GetGameUI();
+            }
         }
 
         public override void OnUpdateAnimation(Character character, AnimatorStateInfo stateInfo, Animator animator)
         {
 
-            if (onDropWeapon)
+            if (character._IsEquiped)
             {
                 if (character._Controller._IsDroppingWeapon)
                 {
@@ -32,26 +32,7 @@ namespace IndieGameAnimationStateData
             }
             else
             {
-                //check if there is weapon on the ground; same location of the character
-                List<Collider> weaponList = character._VicinityDetector._VicinityDetects;
-
-                if (weaponList.Count == 0)
-                {
-                    return;
-                }
-
-                if (character._Controller._IsGrabbingWeapon)
-                {
-                    if (!GameManager.GetInstance._GetItemHotbarContainer()._CheckItemSlotIsFull)
-                    {
-                        animator.SetBool(_ETransitionParameters.IsGrabbingItem.ToString(), true);
-                    }
-                    else
-                    {
-                        //add some text ui in to the game
-                        Debug.Log("Item slot is full");
-                    }
-                }
+                pickUpdateState(character, animator);
             }
         }
 
@@ -59,6 +40,30 @@ namespace IndieGameAnimationStateData
         {
             animator.SetBool(_ETransitionParameters.IsGrabbingItem.ToString(), false);
             animator.SetBool(_ETransitionParameters.IsDroppingWeapon.ToString(), false);
+        }
+
+        private void pickUpdateState(Character character, Animator animator)
+        {
+            List<Collider> weaponList = character._VicinityDetector._VicinityDetects;
+
+            if (weaponList.Count == 0)
+            {
+                return;
+            }
+
+            if (!character._Controller._IsGrabbingWeapon)
+            {
+                return;
+            }
+
+            if (GameManager.GetInstance._GetItemHotbarContainer()._IsItemSlotIsFull)
+            {
+                //add some text ui in to the game
+                Debug.Log("Item slot is full");
+                return;
+            }
+
+            animator.SetBool(_ETransitionParameters.IsGrabbingItem.ToString(), true);
         }
     }
 }

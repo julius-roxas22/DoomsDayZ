@@ -12,13 +12,20 @@ namespace IndieGameUISystem
 {
     public class GameUI : MonoBehaviour
     {
+        //basic draggable setup
+        [Header("Bottom UI Container Setup")]
+        public GameObject _BottomTextContainerObject;
         public Slider _SliderScreenUIPlayerHealthBar;
         public Slider _SliderScreenUIPlayerStaminaBar;
+        [SerializeField] private GameObject menuPanelObject;
+
+        //programmed in code setup
+        [Space(17)]
+        [Header("Game Setup (Programmable)")]
         public GameController _GameController;
         public List<CanvasContainerBase> _CanvasContainerList = new List<CanvasContainerBase>();
 
         private bool menuPanel;
-        [SerializeField] private GameObject menuPanelObject;
 
         private void Awake()
         {
@@ -40,14 +47,14 @@ namespace IndieGameUISystem
 
         //private void Update()
         //{
-        //    if (VirtualInputManager.GetInstance._IsPressedESC)
-        //    {
-        //        menuPanel = !menuPanel;
-        //        menuPanelObject.SetActive(menuPanel);
-        //    }
+        //    //    if (VirtualInputManager.GetInstance._IsPressedESC)
+        //    //    {
+        //    //        menuPanel = !menuPanel;
+        //    //        menuPanelObject.SetActive(menuPanel);
+        //    //    }
 
-        //    //check if the game is paused
-        //    Time.timeScale = menuPanelObject.activeInHierarchy ? 0 : 1;
+        //    //    //check if the game is paused
+        //    //    Time.timeScale = menuPanelObject.activeInHierarchy ? 0 : 1;
         //}
 
         public void _AddDicCanvasContainer(CanvasContainerBase container)
@@ -94,7 +101,6 @@ namespace IndieGameUISystem
         {
             CharacterCanvasContainer characterCanvasContainer = getCharacterCanvas(character);
 
-            //Character owner = characterCanvasContainer._CharacterOwner;
             Slider healthBar = characterCanvasContainer._CharacterHealthBar;
             Image visualDamageImg = characterCanvasContainer._VisualDamageIMG;
 

@@ -10,7 +10,8 @@ namespace IndieGameManagersSystem
     public enum _EProjectileType
     {
         AttackInfo,
-        Rock
+        Rock,
+        BottomTextUI,
     }
 
     public class PoolProjectileManager : Singleton<PoolProjectileManager>
@@ -104,6 +105,7 @@ namespace IndieGameManagersSystem
             return null;
         }
 
+        [System.Obsolete("Deprecated code" , true)]
         public void _ReturnPool(AttackInfo info, _EProjectileType procType/*GameObject obj*/) //deprecated
         {
             //AttackInfo info = obj.GetComponent<AttackInfo>();

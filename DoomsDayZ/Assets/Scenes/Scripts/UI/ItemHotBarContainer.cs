@@ -26,7 +26,7 @@ namespace IndieGameUISystem
             }
         }
 
-        public bool _CheckItemSlotIsFull
+        public bool _IsItemSlotIsFull
         {
             get
             {
